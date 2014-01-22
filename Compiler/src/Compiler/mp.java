@@ -9,8 +9,11 @@ package Compiler;
  * @author Anders
  */
 public class mp {
-    
-    public static void main(){
-        
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
     }
 }
