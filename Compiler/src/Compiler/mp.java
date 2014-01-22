@@ -20,13 +20,5 @@ public class mp {
         {
         String filename = args[0];
         File file = new File(filename);
-        openFile(file);
         }
     }
-    
-    public String openFile(java.io.File)
-    {
-        String faggot = "";
-        return faggot;
-    }
-}
