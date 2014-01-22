@@ -22,3 +22,9 @@ public class mp {
         File file = new File(filename);
         }
     }
+    public static File openFile(File file)
+    {
+        //this is where code goes
+        return file;
+    }
+}
