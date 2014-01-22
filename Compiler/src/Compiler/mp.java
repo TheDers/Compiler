@@ -29,4 +29,9 @@ public class mp {
         //added third line
         return file;
     }
+    
+    public void Faggot(){
+        
+        
+    }
 }
