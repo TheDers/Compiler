@@ -24,7 +24,7 @@ public class mp {
         }
     }
     
-    public String openFile()
+    public String openFile(java.io.File)
     {
         String faggot = "";
         return faggot;
