@@ -20,6 +20,7 @@ public class mp {
         {
         String filename = args[0];
         File file = new File(filename);
+        openFile(file);
         }
     }
     public static File openFile(File file)
