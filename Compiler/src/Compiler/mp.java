@@ -25,8 +25,6 @@ public class mp {
     public static File openFile(File file)
     {
         //this is where code goes
-        //do stuff with token reader
-        //added third line
         return file;
     }
 }
