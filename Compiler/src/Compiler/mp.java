@@ -4,28 +4,37 @@
  */
 package Compiler;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
  * @author Anders
  */
-public class mp {
+public class mp 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         if (0 < args.length) 
         {
         String filename = args[0];
         File file = new File(filename);
-        openFile(file);
+        readFile(file);
         }
     }
-    public static File openFile(File file)
+    public static File readFile(File file) throws IOException 
     {
-        //this is where code goes
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+	int c = 0;
+	while((c = buffer.read()) != -1) {
+		char character = (char) c;
+		System.out.println(character);
+	}
         return file;
     }
 }
