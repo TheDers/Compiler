@@ -270,14 +270,19 @@ public class mp
                 if (isSymbol == true)
                 {
                     Symbols symbol = new Symbols(file, rowNum, colNum, character);
+                    String results = symbol.getToken();
                 }
                 if (isLetterDigit == true)
                 {
                     letterDigits letterDigit = new letterDigits(file, rowNum, colNum, character);
+                    String results = letterDigit.getToken();
+
                 }
                 if (isReservedWord == true || isLetterDigit)
                 {
                     ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
+                    String results = rWord.getToken();
+
                 }
             isSymbol = false;
             isLetterDigit = false;
