@@ -1,5 +1,5 @@
 package Compiler;
-import java.io.File;
+import java.io.*;
 /**
  *
  * @author Anders
@@ -30,13 +30,13 @@ public class Symbols {
     
     File file;
     int row, column;
-    char token;
-    public Symbols(File in_file, int in_row, int in_column, char first_token){
+    char token, next_token;
+    int c = 0;
+    public Symbols(File in_file, int in_row, int in_column, char first_token)throws IOException{
         file = in_file;
         row = in_row;
         column = in_column;
-        token = first_token;
-        getToken();        
+        token = first_token;    
     }
     
     
@@ -54,9 +54,19 @@ public class Symbols {
         }else if(token == '='){
             return Equal();
         }else if(token == '>'){
+            try{
             return Gthan();
+            }catch(IOException e){
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
         }else if(token == '<'){
+            try{
             return Lthan();
+            }catch(IOException e){
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
         }else if(token == '+'){
             return Plus();
         }else if(token == '-'){
@@ -64,7 +74,12 @@ public class Symbols {
         }else if(token == '*'){
             return Times();
         }else if(token == ':'){
+            try{
             return Colon();
+            }catch(IOException e){
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
         }else{
             return "ERROR";
         }
@@ -73,63 +88,133 @@ public class Symbols {
     
     public String Period(){
         column++;
+        System.out.println(".");
         return ".";
     }
     
     public String Comma(){
         column++;
+        System.out.println(",");
         return ",";
     }
     
     public String Scolon(){
         column++;
+        System.out.println(";");
         return ";";
     }
     
     public String Lparen(){
         column++;
+        System.out.println("(");
         return "(";
     }
     
     public String Rparen(){
         column++;
+        System.out.println(")");
         return ")";
     }
     
     public String Equal(){
         column++;
+        System.out.println("=");
         return "=";
     }
     
-    public String Gthan(){
-        //Also includes Qequal
-        return null;
+    public String Gthan()throws IOException{
+        //Also includes Gequal
+        column++;
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+        while((c = buffer.read()) != -1) 
+            {
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<column-1;j++){
+                    next_token = (char)buffer.read();
+                }
+            }
+        c = 0;
+        if(next_token == '='){
+            column++;
+            System.out.println(">=");
+            return ">=";
+        }else{
+            System.out.println(">");
+            return ">";
+        }
     }
     
-    public String Lthan(){
+    public String Lthan()throws IOException{
         //Also includes Lequal
         //Also includes Nequal
-        return null;
+        column++;
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+        while((c = buffer.read()) != -1) 
+            {
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<column-1;j++){
+                    next_token = (char)buffer.read();
+                }
+            }
+        c = 0;
+        if(next_token == '='){
+            column++;
+            System.out.println("<=");
+            return "<=";
+        }else if(next_token == '>'){
+            column++;
+            System.out.println("<>");
+            return "<>";
+        }else{
+            System.out.println("<");
+            return "<";
+        }
     }
     
     public String Plus(){
         column++;
+        System.out.println("+");
         return "+";
     }
     
     public String Minus(){
         column++;
+        System.out.println("-");
         return "-";
     }
     
     public String Times(){
         column++;
+        System.out.println("*");
         return "*";
     }
     
-    public String Colon(){
+    public String Colon()throws IOException{
         //Also includes the Assign
-        return null;
+        column++;
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+        while((c = buffer.read()) != -1) 
+            {
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<column-1;j++){
+                    next_token = (char)buffer.read();
+                }
+            }
+        c = 0;
+        if(next_token == '='){
+            column++;
+            System.out.println(":=");
+            return ":=";
+        }else{
+            System.out.println(":");
+            return ":";
+        }
     }
 }
 
