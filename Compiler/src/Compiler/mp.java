@@ -28,19 +28,26 @@ public class mp
         {
             BufferedReader buffer = new BufferedReader(new FileReader(file));
             int c = 0;
-            int rowNum = 0;
+            int rowNum = 1;
             int colNum = 0;
+            int colPrint = 0;
             boolean isSymbol = false;
             boolean isReservedWord = false;
             boolean isLetterDigit = false;
             while((c = buffer.read()) != -1) 
             {
-                colNum++;
+                    System.out.println(rowNum);
+                    System.out.println(colNum);
 		char character = (char) c;
                 switch(character) 
                    {
                        case '\n':
                            rowNum++;
+                           colNum = 0;
+                           break;
+                       case ' ':
+                           break;
+                       case '\t':
                            break;
                        case '.':
                            isSymbol = true;
@@ -267,28 +274,51 @@ public class mp
                        default:
                             break;
                    }
+                colNum++;
+                colPrint = colNum;
                 if (isSymbol == true)
                 {
                     Symbols symbol = new Symbols(file, rowNum, colNum, character);
-                    String results = symbol.getToken();
+                    String token = symbol.getToken();
+                    int tokenRowNum = symbol.getRow();
+                    int tokenColNum = symbol.getColumn();
+                    String lexeme = symbol.getLexeme();
+                    printSymbol(token, tokenRowNum, colPrint, lexeme);
                 }
                 if (isLetterDigit == true)
                 {
                     letterDigits letterDigit = new letterDigits(file, rowNum, colNum, character);
-                    String results = letterDigit.getToken();
+                    //String results = letterDigit.getToken();
 
                 }
                 if (isReservedWord == true || isLetterDigit)
                 {
-                    ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
-                    String results = rWord.getToken();
+                    //ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
+                    //String results = rWord.getToken();
 
                 }
+                
             isSymbol = false;
             isLetterDigit = false;
             isReservedWord = false;
             }
 
         }
+    public static void printSymbol(String token, int rowNum, int colNum, String lexeme)
+    {
+        System.out.println("Symbol Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+    }
+    public static void printReservedWord(String token, int rowNum, int colNum, String lexeme)
+    {
+        System.out.println("Reserved Word Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+    }
+    public static void printIdentifier(String token, int rowNum, int colNum, String lexeme)
+    {
+        System.out.println("Identifier Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+    }
+    public static void printDigit(String token, int rowNum, int colNum, String lexeme)
+    {
+        System.out.println("Digit Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+    }
     
 }

@@ -16,6 +16,7 @@ import java.io.IOException;
  *
  * @author DasRobotos
  */
+
 class ReservedWords {
 
     BufferedReader buffer;
