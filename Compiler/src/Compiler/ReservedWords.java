@@ -49,14 +49,13 @@ class ReservedWords {
             case 'm':
                 return beginsM();
             case 'n':
-                beginsN();
-                break;
+                return beginsN();
             case 'o':
                 return beginsO();
             case 'p':
                 return beginsP();
             case 'r':
-                beginsR();
+                return beginsR();
             case 't':
                 return beginsT();
             case 'u':
@@ -66,9 +65,8 @@ class ReservedWords {
             case 'w':
                 return beginsW();
             default:
-                return" ";
-        }
-                
+                return"Default on switch ";
+        }  
     }
 
     public String beginsA () throws IOException
@@ -87,61 +85,130 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch=='n')
+            {
+                r = buffer.read();
+                ch = (char) r;
+                if(r=='d')
+                {
+                    return "MP_AND";
+                }
+            }
         }
     }
-    public String beginsB ()
+    public String beginsB () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        do
+        {
+            buffer.readLine();
+            temp++;
+        }while(temp<row);
+        
+        while ((r = buffer.read()) < column) {
+            //do nothing
+        }
+        while((r = buffer.read()) != -1)
+        {
+            char ch = (char) r;
+            switch(ch)
+            {
+                case'e':
+                {
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch == 'g')
+                    {
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch=='i')
+                        {
+                            r = buffer.read();
+                            ch = (char) r;
+                                if(ch=='n')
+                                {
+                                    return "MP_BEGIN";
+                                }
+                        }
+                    }
+                }
+                case'o':
+                {
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch == 'o')
+                    {
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch=='l')
+                        {
+                            r = buffer.read();
+                            ch = (char) r;
+                                if(ch=='e')
+                                {
+                                    r = buffer.read();
+                                    ch = (char) r;
+                                    if(ch=='n')
+                                    {
+                                        return "MP_BOOLEAN";
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public String beginsD () throws IOException
     {
         
     }
-    public String beginsD ()
+    public String beginsE () throws IOException
     {
         
     }
-    public String beginsE ()
+    public String beginsF () throws IOException
     {
         
     }
-    public String beginsF ()
+    public String beginsI () throws IOException
     {
         
     }
-    public String beginsI ()
+    public String beginsM () throws IOException
     {
         
     }
-    public String beginsM ()
+    public String beginsN () throws IOException
     {
         
     }
-    public String beginsN ()
+    public String beginsO () throws IOException
     {
         
     }
-    public String beginsO ()
+    public String beginsP () throws IOException
     {
         
     }
-    public String beginsP ()
+    public String beginsR () throws IOException
     {
         
     }
-    public String beginsR ()
+    public String beginsT () throws IOException
     {
         
     }
-    public String beginsT ()
+    public String beginsU () throws IOException
     {
         
     }
-    public String beginsU ()
+    public String beginsV () throws IOException
     {
         
     }
-    public String beginsV ()
-    {
-        
-    }
-    public String beginsW ()
+    public String beginsW () throws IOException
     {
         
     }
