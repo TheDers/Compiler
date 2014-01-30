@@ -28,17 +28,26 @@ public class mp
         {
             BufferedReader buffer = new BufferedReader(new FileReader(file));
             int c = 0;
-            int rowNum = 1;
+            int rowNum = 0;
             int colNum = 0;
             int colPrint = 0;
+            char colPointer;
             boolean isSymbol = false;
             boolean isReservedWord = false;
             boolean isLetterDigit = false;
+
+
+            
             while((c = buffer.read()) != -1) 
-            {
-                    System.out.println(rowNum);
-                    System.out.println(colNum);
-		char character = (char) c;
+            {   
+                //this should now be updated to work with new values
+                char character = (char) c;
+                for(int i = 0;i<rowNum;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<colNum-1;j++){
+                     character = (char)buffer.read();
+                }   
                 switch(character) 
                    {
                        case '\n':
@@ -282,6 +291,7 @@ public class mp
                     String token = symbol.getToken();
                     int tokenRowNum = symbol.getRow();
                     int tokenColNum = symbol.getColumn();
+                    colNum = tokenColNum;
                     String lexeme = symbol.getLexeme();
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
                 }
