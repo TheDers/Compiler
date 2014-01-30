@@ -140,16 +140,14 @@ public class Symbols {
         //Also includes Gequal
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((char)(c = buffer.read()) != ' ')
-            {
+        
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
                 }
                 for(int j = 0;j<column-1;j++){
                     next_token = (char)buffer.read();
                 }
-            }
-        c = 0;
+        next_token = (char)buffer.read();
         if(next_token == '='){
             column++;
             lexeme = ">=";
@@ -165,16 +163,13 @@ public class Symbols {
         //Also includes Nequal
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((char)(c = buffer.read()) != ' ') 
-            {
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
                 }
                 for(int j = 0;j<column-1;j++){
-                    next_token = (char)buffer.read();
+                    buffer.read();
                 }
-            }
-        c = 0;
+        next_token = (char)buffer.read();
         if(next_token == '='){
             column++;
             lexeme = "<=";
@@ -211,16 +206,13 @@ public class Symbols {
         //Also includes the Assign
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((char)(c = buffer.read()) != ' ')
-            {
+        
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
                 }
                 for(int j = 0;j<column-1;j++){
-                    next_token = (char)buffer.read();
                 }
-            }
-        c = 0;
+        next_token = (char)buffer.read();
         if(next_token == '='){
             column++;
             lexeme = ":=";
