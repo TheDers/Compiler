@@ -140,7 +140,7 @@ public class Symbols {
         //Also includes Gequal
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((c = buffer.read()) != -1) 
+        while((char)(c = buffer.read()) != ' ')
             {
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
@@ -165,7 +165,7 @@ public class Symbols {
         //Also includes Nequal
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((c = buffer.read()) != -1) 
+        while((char)(c = buffer.read()) != ' ') 
             {
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
@@ -211,7 +211,7 @@ public class Symbols {
         //Also includes the Assign
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        while((c = buffer.read()) != -1) 
+        while((char)(c = buffer.read()) != ' ')
             {
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
