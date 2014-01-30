@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Compiler;
-
-import java.io.File;
+import java.io.*;
 
 /**
  *
  * @author DasRobotos
+ *
  */
-class letterDigits {
 
-    letterDigits(File file, int rowNum, int colNum, char character) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class letterDigits {
+    
+    File file;
+    int row, column;
+    char token, next_token;
+    String lexeme = "";
+    char c = 0;
+    public letterDigits(File file, int in_row, int in_column, char first_token) {
+        
     }
     
 }
