@@ -25,6 +25,7 @@ public class Symbols {
 	MP_MINUS          "-"
 	MP_TIMES          "*"
 	MP_COLON          ":"
+        MP_FLOAT_DIVIDE   "/"
      * 
      */
     
