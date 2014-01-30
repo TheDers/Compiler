@@ -31,6 +31,7 @@ public class Symbols {
     File file;
     int row, column;
     char token, next_token;
+    String lexeme = "";
     int c = 0;
     public Symbols(File in_file, int in_row, int in_column, char first_token)throws IOException{
         file = in_file;
@@ -80,46 +81,64 @@ public class Symbols {
                 System.out.println("General I/O exception: " + e.getMessage());
                 return "ERROR";
             }
+        }else if(token == '/'){
+            return Divide();
         }else{
             return "ERROR";
         }
+    }
+    
+    public String getLexeme(){
+        return lexeme;
+    }
+    public int getRow(){
+        return row;
+    }
+    public int getColumn(){
+        return column;
     }
     
     
     public String Period(){
         column++;
         System.out.println(".");
-        return ".";
+        lexeme = ".";
+        return "MP_PERIOD";
     }
     
     public String Comma(){
         column++;
         System.out.println(",");
-        return ",";
+        lexeme = ",";
+        return "MP_COMMA";
     }
     
     public String Scolon(){
         column++;
         System.out.println(";");
-        return ";";
+        lexeme = ";";
+        return "MP_SCOLON";
     }
     
     public String Lparen(){
         column++;
         System.out.println("(");
-        return "(";
+        lexeme = "(";
+        return "MP_LPAREN";
     }
     
     public String Rparen(){
         column++;
         System.out.println(")");
-        return ")";
+        lexeme = ")";
+        return ")MP_RPAREN";
     }
     
     public String Equal(){
         column++;
         System.out.println("=");
-        return "=";
+        lexeme = "=";
+        return "MP_EQUAL";
     }
     
     public String Gthan()throws IOException{
@@ -139,10 +158,12 @@ public class Symbols {
         if(next_token == '='){
             column++;
             System.out.println(">=");
-            return ">=";
+            lexeme = ">=";
+            return "MP_GEQUAL";
         }else{
             System.out.println(">");
-            return ">";
+            lexeme = ">";
+            return "MP_GTHAN";
         }
     }
     
@@ -164,33 +185,39 @@ public class Symbols {
         if(next_token == '='){
             column++;
             System.out.println("<=");
-            return "<=";
+            lexeme = "<=";
+            return "MP_LEQUAL";
         }else if(next_token == '>'){
             column++;
             System.out.println("<>");
-            return "<>";
+            lexeme = "<>";
+            return "MP_NEQUAL";
         }else{
             System.out.println("<");
-            return "<";
+            lexeme = "<";
+            return "MP_LTHAN";
         }
     }
     
     public String Plus(){
         column++;
         System.out.println("+");
-        return "+";
+        lexeme = "+";
+        return "MP_PLUS";
     }
     
     public String Minus(){
         column++;
         System.out.println("-");
-        return "-";
+        lexeme = "-";
+        return "MP_MINUS";
     }
     
     public String Times(){
         column++;
         System.out.println("*");
-        return "*";
+        lexeme = "*";
+        return "MP_TIMES";
     }
     
     public String Colon()throws IOException{
@@ -210,11 +237,20 @@ public class Symbols {
         if(next_token == '='){
             column++;
             System.out.println(":=");
-            return ":=";
+            lexeme = ":=";
+            return "MP_ASSIGN";
         }else{
             System.out.println(":");
-            return ":";
+            lexeme = ":";
+            return "MP_COLON";
         }
+    }
+    
+    public String Divide(){
+        column++;
+        System.out.println("/");
+        lexeme = "/";
+        return "MP_FLOAT_DIVIDE";
     }
 }
 
