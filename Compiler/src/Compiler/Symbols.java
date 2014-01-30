@@ -102,42 +102,36 @@ public class Symbols {
     
     public String Period(){
         column++;
-        System.out.println(".");
         lexeme = ".";
         return "MP_PERIOD";
     }
     
     public String Comma(){
         column++;
-        System.out.println(",");
         lexeme = ",";
         return "MP_COMMA";
     }
     
     public String Scolon(){
         column++;
-        System.out.println(";");
         lexeme = ";";
         return "MP_SCOLON";
     }
     
     public String Lparen(){
         column++;
-        System.out.println("(");
         lexeme = "(";
         return "MP_LPAREN";
     }
     
     public String Rparen(){
         column++;
-        System.out.println(")");
         lexeme = ")";
         return ")MP_RPAREN";
     }
     
     public String Equal(){
         column++;
-        System.out.println("=");
         lexeme = "=";
         return "MP_EQUAL";
     }
@@ -158,11 +152,9 @@ public class Symbols {
         c = 0;
         if(next_token == '='){
             column++;
-            System.out.println(">=");
             lexeme = ">=";
             return "MP_GEQUAL";
         }else{
-            System.out.println(">");
             lexeme = ">";
             return "MP_GTHAN";
         }
@@ -185,16 +177,13 @@ public class Symbols {
         c = 0;
         if(next_token == '='){
             column++;
-            System.out.println("<=");
             lexeme = "<=";
             return "MP_LEQUAL";
         }else if(next_token == '>'){
             column++;
-            System.out.println("<>");
             lexeme = "<>";
             return "MP_NEQUAL";
         }else{
-            System.out.println("<");
             lexeme = "<";
             return "MP_LTHAN";
         }
@@ -202,21 +191,18 @@ public class Symbols {
     
     public String Plus(){
         column++;
-        System.out.println("+");
         lexeme = "+";
         return "MP_PLUS";
     }
     
     public String Minus(){
         column++;
-        System.out.println("-");
         lexeme = "-";
         return "MP_MINUS";
     }
     
     public String Times(){
         column++;
-        System.out.println("*");
         lexeme = "*";
         return "MP_TIMES";
     }
@@ -237,11 +223,9 @@ public class Symbols {
         c = 0;
         if(next_token == '='){
             column++;
-            System.out.println(":=");
             lexeme = ":=";
             return "MP_ASSIGN";
         }else{
-            System.out.println(":");
             lexeme = ":";
             return "MP_COLON";
         }
@@ -249,7 +233,6 @@ public class Symbols {
     
     public String Divide(){
         column++;
-        System.out.println("/");
         lexeme = "/";
         return "MP_FLOAT_DIVIDE";
     }
