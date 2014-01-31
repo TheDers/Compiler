@@ -84,6 +84,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "a";
                 return "Letter";
             }
             column++;
@@ -97,6 +98,7 @@ class ReservedWords {
                     r = buffer.read();
                     if(ch==' ')
                     {
+                        lexeme = "and";
                         return "MP_AND";
                     }
                 }
@@ -121,6 +123,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "b";
                 return "Letter";
             }
             column++;
@@ -145,6 +148,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "begin";
                                 return "MP_BEGIN";
                             }
                         }
@@ -182,6 +186,7 @@ class ReservedWords {
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
+                                        lexeme = "boolean";
                                         return "MP_BOOLEAN";
                                     }
                                 }
@@ -210,6 +215,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "d";
                 return "Letter";
             }
             column++;
@@ -220,6 +226,7 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch == 'v'||ch=='V')
                 {
+                    lexeme = "div";
                     return "MP_DIV";
                 }
             }
@@ -230,6 +237,7 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch == ' ')
                 {
+                    lexeme = "do";
                     return "M_DO";
                 }
                 if(ch == 'w'||ch=='W')
@@ -253,6 +261,7 @@ class ReservedWords {
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
+                                    lexeme = "downto";
                                     return "MP_DOWNTO";
                                 }
                             }
@@ -280,6 +289,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "e";
                 return "Letter";
             }
             column++;
@@ -299,6 +309,7 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch==' ')
                         {
+                            lexeme = "else";
                             return "MP_ELSE";
                         }
                     }
@@ -315,6 +326,7 @@ class ReservedWords {
                     ch = (char) r;
                     if(ch==' ')
                     {
+                        lexeme = "end";
                         return "MP_END";
                     }
                 }
@@ -339,6 +351,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "f";
                 return "Letter";
             }
             column++;
@@ -363,6 +376,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "false";
                                 return "MP_FALSE";
                             }
                         }
@@ -390,6 +404,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "fixed";
                                 return "MP_FIXED";
                             }
                         }
@@ -417,6 +432,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "float";
                                 return "MP_FLOAT";
                             }
                         }
@@ -434,6 +450,7 @@ class ReservedWords {
                     ch = (char) r;
                     if(ch==' ')
                     {
+                        lexeme = "for";
                         return "FOR";
                     }
                 }
@@ -474,6 +491,7 @@ class ReservedWords {
                                         ch = (char) r;
                                         if(ch==' ')
                                         {
+                                            lexeme = "function";
                                             return "MP_FUNCTION";
                                         }
                                     }
@@ -503,6 +521,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme ="i";
                 return "Letter";
             }
             column++;
@@ -541,6 +560,7 @@ class ReservedWords {
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
+                                        lexeme = "integer";
                                         return "MP_INTEGER";
                                     }
                                 }
@@ -569,6 +589,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "m";
                 return "Letter";
             }
             column++;
@@ -583,6 +604,7 @@ class ReservedWords {
                     ch = (char) r;
                     if(ch==' ')
                     {
+                        lexeme = "mod";
                         return "MP_MOD";
                     }
                 }
@@ -607,6 +629,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "n";
                 return "Letter";
             }
             column++;
@@ -621,6 +644,7 @@ class ReservedWords {
                     ch = (char) r;
                     if(ch==' ')
                     {
+                        lexeme = "not";
                         return "MP_NOT";
                     }
                 }
@@ -645,6 +669,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "o";
                 return "Letter";
             }
             column++;
@@ -654,6 +679,7 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch==' ')
                 {
+                    lexeme = "or";
                     return"MP_OR";
                 }
             }
@@ -677,6 +703,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "p";
                 return "Letter";
             }
             column++;
@@ -711,6 +738,7 @@ class ReservedWords {
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
+                                        lexeme = "program";
                                         return "MP_PROGRAM";
                                     }
                                 }
@@ -748,6 +776,7 @@ class ReservedWords {
                                             ch = (char) r;
                                             if(ch==' ')
                                             {
+                                                lexeme = "procedure";
                                                 return "MP_PROCEDURE";
                                             }
                                         }
@@ -778,6 +807,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "r";
                 return "Letter";
             }
             column++;
@@ -797,6 +827,7 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch==' ')
                         {
+                            lexeme = "read";
                             return "MP_READ";
                         }
                     }
@@ -822,6 +853,7 @@ class ReservedWords {
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
+                                    lexeme = "repeat";
                                     return "MP_REPEAT";
                                 }
                             }
@@ -845,13 +877,10 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "s";
                 return "Letter";
             }
             column++;
-            if(ch==' ')
-            {
-                return "Letter";
-            }
             if(ch=='t'||ch=='T')
             {
                 r = buffer.read(); 
@@ -878,6 +907,7 @@ class ReservedWords {
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
+                                    lexeme = "string";
                                     return "MP_STRING";
                                 }
                             }
@@ -905,6 +935,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "t";
                 return "Letter";
             }
             column++;
@@ -924,6 +955,7 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch==' ')
                         {
+                            lexeme = "then";
                             return "MP_THEN";
                         }
                     }
@@ -945,6 +977,7 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch==' ')
                         {
+                            lexeme = "true";
                             return "M_TRUE";
                         }
                     }
@@ -956,6 +989,7 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch==' ')
                 {
+                    lexeme = "to";
                     return "MP_TO";
                 }
             }
@@ -979,6 +1013,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "u";
                 return "Letter";
             }
             column++;
@@ -1003,6 +1038,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "until";
                                 return "MP_UNTIL";
                             }
                         }
@@ -1029,6 +1065,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "v";
                 return "Letter";
             }
             column++;
@@ -1043,6 +1080,7 @@ class ReservedWords {
                     ch = (char) r;
                     if(ch==' ')
                     {
+                        lexeme = "var";
                         return "MP_VAR";
                     }
                 }
@@ -1067,6 +1105,7 @@ class ReservedWords {
             char ch = (char) r;
             if(ch==' ')
             {
+                lexeme = "w";
                 return "Letter";
             }
             column++;
@@ -1091,6 +1130,7 @@ class ReservedWords {
                             ch = (char) r;
                             if(ch==' ')
                             {
+                                lexeme = "while";
                                 return "MP_WHILE";
                             }
                         }
@@ -1128,6 +1168,7 @@ class ReservedWords {
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
+                                        lexeme = "writeln";
                                         return "MP_WRITELN";
                                     }
                                 }
@@ -1138,6 +1179,7 @@ class ReservedWords {
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
+                                    lexeme = "write";
                                     return "MP_WRITE";
                                 }
                             }
