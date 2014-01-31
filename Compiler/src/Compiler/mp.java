@@ -51,6 +51,8 @@ public class mp
                            rowNum++;
                            colNum = 0;
                            break;
+                       case '\r':
+                           break;
                        case ' ':
                            colNum++;
                            break;
@@ -70,11 +72,15 @@ public class mp
                        case '\"':
                            if (stringStart == true)
                            {
+                               string = string + "\"";
                                stringStart = false;
                            }else 
                            {
                                stringStart = true;
                            }
+                           break;
+                       case '/':
+                           isSymbol = true;
                            break;
                        case '\'':
                            isSymbol = true;
@@ -85,6 +91,7 @@ public class mp
                            commentStartCol = colNum;
                            break;
                        case '}':
+                           comment = comment + "}";
                            commentStart = false;
                            break;
                        case ';':
@@ -308,7 +315,7 @@ public class mp
                             break;
                    }
                 colPrint = colNum;
-                if (isSymbol == true && commentStart == false)
+                if (isSymbol == true && commentStart == false && stringStart == false)
                 {
                     Symbols symbol = new Symbols(file, rowNum, colNum, character);
                     String token = symbol.getToken();
@@ -322,7 +329,7 @@ public class mp
                     String lexeme = symbol.getLexeme();
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
                 }
-                if (isLetterDigit == true && commentStart == false)
+                if (isLetterDigit == true && commentStart == false && stringStart == false)
                 {
                     letterDigits letterDigit = new letterDigits(file, rowNum, colNum, character);
                     String token = letterDigit.getToken();
@@ -337,15 +344,15 @@ public class mp
                     printDigit(token, tokenRowNum, colPrint, lexeme);
 
                 }
-                if (isReservedWord == true && commentStart == false)
+                if (isReservedWord == true && commentStart == false && stringStart == false)
                 {
                     ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
                     String token = rWord.getToken();
                     int tokenRowNum = rWord.getRow();
                     int tokenColNum = rWord.getColumn();
                     int difference = tokenColNum-colNum;
-                    System.out.println(tokenColNum);
-                    System.out.println(colNum);
+                    //System.out.println(tokenColNum);
+                    //System.out.println(colNum);
                     for(int i = 0;i<difference-1;i++){
                         buffer.read();
                     }
@@ -374,7 +381,7 @@ public class mp
 
             }else 
             {
-                    //System.out.println(comment+"}");
+                    System.out.println(comment);
                     comment = "";
                     commentStart = false;
 
@@ -387,7 +394,7 @@ public class mp
 
             }else 
             {
-                    //System.out.println(string+"\"");
+                    System.out.println(string);
                     string = "";
                     stringStart = false;
 
