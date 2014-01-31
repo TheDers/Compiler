@@ -28,7 +28,7 @@ class ReservedWords {
     {
         file = in_file;
         row = in_row;
-        column = in_column;
+        column = in_column+1;
         first_token = in_first_token;
     }
     public String getToken() throws FileNotFoundException, IOException
@@ -79,7 +79,10 @@ class ReservedWords {
             buffer.readLine();
             temp++;
         }
-        while((r = buffer.read()) != -1)
+        while ((r = buffer.read()) < column) {
+            //do nothing
+        }
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -118,7 +121,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -210,7 +213,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -284,7 +287,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -346,7 +349,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -451,7 +454,7 @@ class ReservedWords {
                     if(ch==' ')
                     {
                         lexeme = "for";
-                        return "FOR";
+                        return "MP_FOR";
                     }
                 }
             }
@@ -516,7 +519,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -584,7 +587,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -624,7 +627,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -664,7 +667,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -698,7 +701,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -802,7 +805,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -872,7 +875,7 @@ class ReservedWords {
             buffer.readLine();
             temp++;
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -930,7 +933,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -1008,7 +1011,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -1060,7 +1063,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
@@ -1100,7 +1103,7 @@ class ReservedWords {
         while ((r = buffer.read()) < column) {
             //do nothing
         }
-        while((r = buffer.read()) != -1)
+        r = buffer.read();
         {
             char ch = (char) r;
             if(ch==' ')
