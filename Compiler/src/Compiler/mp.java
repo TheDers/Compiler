@@ -53,9 +53,13 @@ public class mp
                            break;
                        case ' ':
                            colNum++;
-                           System.out.println("SPACE");
                            break;
                        case '\t':
+                           colNum++;
+                           colNum++;
+                           colNum++;
+                           colNum++;
+                           colNum++;
                            break;
                        case '.':
                            isSymbol = true;
@@ -305,8 +309,17 @@ public class mp
                 }
                 if (isReservedWord == true || isLetterDigit)
                 {
-                    //ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
-                    //String results = rWord.getToken();
+                    ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
+                    String token = rWord.getToken();
+                    //int tokenRowNum = rWord.getRow();
+                    //int tokenColNum = rWord.getColumn();
+                    //int difference = tokenColNum-colNum;
+                    //for(int i = 0;i<difference-1;i++){
+                    //    buffer.read();
+                    //}
+                    //colNum = tokenColNum;
+                    //String lexeme = rWord.getLexeme();
+                    System.out.println("Reserved Word Found: Token " + token);
 
                 }
                 
