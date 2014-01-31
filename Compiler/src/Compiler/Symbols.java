@@ -138,21 +138,22 @@ public class Symbols {
     
     public String Gthan()throws IOException{
         //Also includes Gequal
-        column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
         
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
                 }
-                for(int j = 0;j<column-1;j++){
+                for(int j = 0;j<=column;j++){
                     next_token = (char)buffer.read();
                 }
         next_token = (char)buffer.read();
         if(next_token == '='){
             column++;
+            column++;
             lexeme = ">=";
             return "MP_GEQUAL";
         }else{
+            column++;
             lexeme = ">";
             return "MP_GTHAN";
         }
@@ -161,26 +162,50 @@ public class Symbols {
     public String Lthan()throws IOException{
         //Also includes Lequal
         //Also includes Nequal
-        column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
                 for(int i = 0;i<row;i++){
                     buffer.readLine();
                 }
-                for(int j = 0;j<column-1;j++){
+                for(int j = 0;j<=column;j++){
                     buffer.read();
                 }
         next_token = (char)buffer.read();
         if(next_token == '='){
             column++;
+            column++;
             lexeme = "<=";
             return "MP_LEQUAL";
         }else if(next_token == '>'){
             column++;
+            column++;
             lexeme = "<>";
             return "MP_NEQUAL";
         }else{
+            column++;
             lexeme = "<";
             return "MP_LTHAN";
+        }
+    }
+    
+    public String Colon()throws IOException{
+        //Also includes the Assign
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<=column;j++){
+                     buffer.read();
+                }
+        next_token = (char)buffer.read();
+        if(next_token == '='){
+            column++;
+            column++;
+            lexeme = ":=";
+            return "MP_ASSIGN";
+        }else{
+            column++;
+            lexeme = ":";
+            return "MP_COLON";
         }
     }
     
@@ -202,26 +227,6 @@ public class Symbols {
         return "MP_TIMES";
     }
     
-    public String Colon()throws IOException{
-        //Also includes the Assign
-        column++;
-        BufferedReader buffer = new BufferedReader(new FileReader(file));
-        
-                for(int i = 0;i<row;i++){
-                    buffer.readLine();
-                }
-                for(int j = 0;j<column-1;j++){
-                }
-        next_token = (char)buffer.read();
-        if(next_token == '='){
-            column++;
-            lexeme = ":=";
-            return "MP_ASSIGN";
-        }else{
-            lexeme = ":";
-            return "MP_COLON";
-        }
-    }
     
     public String Divide(){
         column++;

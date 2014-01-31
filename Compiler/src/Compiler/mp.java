@@ -42,12 +42,9 @@ public class mp
             {   
                 //this should now be updated to work with new values
                 char character = (char) c;
-                for(int i = 0;i<rowNum;i++){
-                    buffer.readLine();
-                }
-                for(int j = 0;j<colNum-1;j++){
-                     character = (char)buffer.read();
-                }   
+                
+                
+                
                 switch(character) 
                    {
                        case '\n':
@@ -55,6 +52,8 @@ public class mp
                            colNum = 0;
                            break;
                        case ' ':
+                           colNum++;
+                           System.out.println("SPACE");
                            break;
                        case '\t':
                            break;
@@ -283,7 +282,6 @@ public class mp
                        default:
                             break;
                    }
-                colNum++;
                 colPrint = colNum;
                 if (isSymbol == true)
                 {
@@ -291,6 +289,10 @@ public class mp
                     String token = symbol.getToken();
                     int tokenRowNum = symbol.getRow();
                     int tokenColNum = symbol.getColumn();
+                    int difference = tokenColNum-colNum;
+                    for(int i = 0;i<difference-1;i++){
+                        buffer.read();
+                    }
                     colNum = tokenColNum;
                     String lexeme = symbol.getLexeme();
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
