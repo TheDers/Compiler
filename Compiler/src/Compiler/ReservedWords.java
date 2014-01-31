@@ -86,13 +86,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "a";
                 return "Letter";
             }
-            column++;
             if(ch=='n'||ch=='N')
             {
                 r = buffer.read();
@@ -101,6 +101,8 @@ class ReservedWords {
                 if(ch=='d'||ch=='D')
                 {
                     r = buffer.read();
+                    column++;
+                    ch = (char) r;
                     if(ch==' ')
                     {
                         lexeme = "and";
@@ -125,13 +127,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "b";
                 return "Letter";
             }
-            column++;
             if(ch=='e'||ch=='E')
             {
                 r = buffer.read(); 
@@ -150,6 +152,7 @@ class ReservedWords {
                         if(ch=='n'||ch=='N')
                         {
                             r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -188,6 +191,7 @@ class ReservedWords {
                                 if(ch=='n'||ch=='N')
                                 {
                                     r = buffer.read(); 
+                                    column++;
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
@@ -217,13 +221,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "d";
                 return "Letter";
             }
-            column++;
             if(ch=='i'||ch=='I')
             {
                 r = buffer.read(); 
@@ -231,8 +235,14 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch == 'v'||ch=='V')
                 {
-                    lexeme = "div";
-                    return "MP_DIV";
+                    r = buffer.read(); 
+                    column++;
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        lexeme = "div";
+                        return "MP_DIV";
+                    }
                 }
             }
             if(ch=='o'||ch=='O')
@@ -263,6 +273,7 @@ class ReservedWords {
                             if(ch=='o'||ch=='O')
                             {
                                 r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
@@ -291,13 +302,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "e";
                 return "Letter";
             }
-            column++;
             if(ch=='l'||ch=='L')
             {
                 r = buffer.read(); 
@@ -311,6 +322,7 @@ class ReservedWords {
                     if(ch=='e'||ch=='E')
                     {
                         r = buffer.read();
+                        column++;
                         ch = (char) r;
                         if(ch==' ')
                         {
@@ -328,6 +340,7 @@ class ReservedWords {
                 if(ch == 'd'||ch=='D')
                 {
                     r = buffer.read();
+                    column++;
                     ch = (char) r;
                     if(ch==' ')
                     {
@@ -353,13 +366,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "f";
                 return "Letter";
             }
-            column++;
             if(ch=='a'||ch=='A')
             {
                 r = buffer.read(); 
@@ -377,7 +390,8 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch == 'e'||ch=='E')
                         {
-                            r = buffer.read(); 
+                            r = buffer.read();
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -406,6 +420,7 @@ class ReservedWords {
                         if(ch == 'd'||ch=='D')
                         {
                             r = buffer.read();
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -434,6 +449,7 @@ class ReservedWords {
                         if(ch=='t'||ch=='T')
                         {
                             r = buffer.read();
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -452,6 +468,7 @@ class ReservedWords {
                 if(ch == 'r'||ch=='R')
                 {
                     r = buffer.read();
+                    column++;
                     ch = (char) r;
                     if(ch==' ')
                     {
@@ -493,6 +510,7 @@ class ReservedWords {
                                     if(ch == 'n'||ch=='N')
                                     {
                                         r = buffer.read();
+                                        column++;
                                         ch = (char) r;
                                         if(ch==' ')
                                         {
@@ -523,16 +541,22 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme ="i";
                 return "Letter";
             }
-            column++;
             if(ch=='f'||ch=='F')
             {
-                return "MP_IF";
+                r = buffer.read();
+                column++;
+                ch = (char) r;
+                if(ch==' ')
+                {
+                    return "MP_IF";
+                }
             }
             if(ch=='n'||ch=='N')
             {
@@ -562,6 +586,7 @@ class ReservedWords {
                                 if(ch=='r'||ch=='R')
                                 {
                                     r = buffer.read();
+                                    column++;
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
@@ -591,13 +616,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "m";
                 return "Letter";
             }
-            column++;
             if(ch=='o'||ch=='O')
             {
                 r = buffer.read(); 
@@ -606,6 +631,7 @@ class ReservedWords {
                 if(r=='d'||ch=='D')
                 {
                     r = buffer.read();
+                    column++;
                     ch = (char) r;
                     if(ch==' ')
                     {
@@ -631,13 +657,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "n";
                 return "Letter";
             }
-            column++;
             if(ch=='o'||ch=='O')
             {
                 r = buffer.read(); 
@@ -646,6 +672,7 @@ class ReservedWords {
                 if(r=='t'||ch=='T')
                 {
                     r = buffer.read();
+                    column++;
                     ch = (char) r;
                     if(ch==' ')
                     {
@@ -671,16 +698,17 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "o";
                 return "Letter";
             }
-            column++;
             if(ch=='r'||ch=='R')
             {
                 r = buffer.read();
+                column++;
                 ch = (char) r;
                 if(ch==' ')
                 {
@@ -705,13 +733,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "p";
                 return "Letter";
             }
-            column++;
             if(ch=='r'||ch=='R')
             {
                 r = buffer.read(); 
@@ -740,6 +768,7 @@ class ReservedWords {
                                 if(ch=='m'||ch=='M')
                                 {
                                     r = buffer.read();
+                                    column++;
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
@@ -778,6 +807,7 @@ class ReservedWords {
                                         if(ch=='e'||ch=='E')
                                         {
                                             r = buffer.read();
+                                            column++;
                                             ch = (char) r;
                                             if(ch==' ')
                                             {
@@ -809,13 +839,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "r";
                 return "Letter";
             }
-            column++;
             if(ch=='e'||ch=='E')
             {
                 r = buffer.read(); 
@@ -829,6 +859,7 @@ class ReservedWords {
                     if(ch=='d'||ch=='D')
                     {
                         r = buffer.read();
+                        column++;
                         ch = (char) r;
                         if(ch==' ')
                         {
@@ -855,6 +886,7 @@ class ReservedWords {
                             if(ch=='t'||ch=='T')
                             {
                                 r = buffer.read();
+                                column++;
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
@@ -879,13 +911,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "s";
                 return "Letter";
             }
-            column++;
             if(ch=='t'||ch=='T')
             {
                 r = buffer.read(); 
@@ -909,6 +941,7 @@ class ReservedWords {
                             if(ch=='g'||ch=='G')
                             {
                                 r = buffer.read();
+                                column++;
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
@@ -937,13 +970,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "t";
                 return "Letter";
             }
-            column++;
             if(ch=='h'||ch=='H')
             {
                 r = buffer.read(); 
@@ -957,6 +990,7 @@ class ReservedWords {
                     if(ch=='n'||ch=='N')
                     {
                         r = buffer.read();
+                        column++;
                         ch = (char) r;
                         if(ch==' ')
                         {
@@ -979,6 +1013,7 @@ class ReservedWords {
                     if(ch == 'e'||ch=='E')
                     {
                         r = buffer.read();
+                        column++;
                         ch = (char) r;
                         if(ch==' ')
                         {
@@ -991,6 +1026,7 @@ class ReservedWords {
             if(ch=='o'||ch=='O')
             {
                 r = buffer.read();
+                column++;
                 ch = (char) r;
                 if(ch==' ')
                 {
@@ -1015,13 +1051,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "u";
                 return "Letter";
             }
-            column++;
             if(ch=='n'||ch=='N')
             {
                 r = buffer.read(); 
@@ -1040,6 +1076,7 @@ class ReservedWords {
                         if(ch=='l'||ch=='L')
                         {
                             r = buffer.read();
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -1067,13 +1104,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "v";
                 return "Letter";
             }
-            column++;
             if(ch=='a'||ch=='A')
             {
                 r = buffer.read(); 
@@ -1082,6 +1119,7 @@ class ReservedWords {
                 if(ch=='r'||ch=='R')
                 {
                     r = buffer.read();
+                    column++;
                     ch = (char) r;
                     if(ch==' ')
                     {
@@ -1107,13 +1145,13 @@ class ReservedWords {
         }
         r = buffer.read();
         {
+            column++;
             char ch = (char) r;
             if(ch==' ')
             {
                 lexeme = "w";
                 return "Letter";
             }
-            column++;
             if(ch=='h'||ch=='H')
             {
                 r = buffer.read(); 
@@ -1132,6 +1170,7 @@ class ReservedWords {
                         if(ch=='e'||ch=='E')
                         {
                             r = buffer.read();
+                            column++;
                             ch = (char) r;
                             if(ch==' ')
                             {
@@ -1170,6 +1209,7 @@ class ReservedWords {
                                 if(ch=='n'||ch=='N')
                                 {
                                     r = buffer.read();
+                                    column++;
                                     ch = (char) r;
                                     if(ch==' ')
                                     {
@@ -1181,6 +1221,7 @@ class ReservedWords {
                             if(ch==' ')
                             {
                                 r = buffer.read();
+                                column++;
                                 ch = (char) r;
                                 if(ch==' ')
                                 {
