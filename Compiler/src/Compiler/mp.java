@@ -341,16 +341,17 @@ public class mp
                 {
                     ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
                     String token = rWord.getToken();
-                    //int tokenRowNum = rWord.getRow();
-                    //int tokenColNum = rWord.getColumn();
-                    //int difference = tokenColNum-colNum;
-                    //for(int i = 0;i<difference-1;i++){
-                    //    buffer.read();
-                    //}
-                    //colNum = tokenColNum;
-                    //String lexeme = rWord.getLexeme();
-                    System.out.println("Reserved Word Found: Token " + token);
-
+                    int tokenRowNum = rWord.getRow();
+                    int tokenColNum = rWord.getColumn();
+                    int difference = tokenColNum-colNum;
+                    System.out.println(tokenColNum);
+                    System.out.println(colNum);
+                    for(int i = 0;i<difference-1;i++){
+                        buffer.read();
+                    }
+                    colNum = tokenColNum;
+                    String lexeme = rWord.getLexeme();
+                    printReservedWord(token, tokenRowNum, tokenColNum, lexeme);
                 }
                 if (commentStart == true)
                 {
@@ -373,7 +374,7 @@ public class mp
 
             }else 
             {
-                    System.out.println(comment+"}");
+                    //System.out.println(comment+"}");
                     comment = "";
                     commentStart = false;
 
@@ -386,7 +387,7 @@ public class mp
 
             }else 
             {
-                    System.out.println(string+"\"");
+                    //System.out.println(string+"\"");
                     string = "";
                     stringStart = false;
 
