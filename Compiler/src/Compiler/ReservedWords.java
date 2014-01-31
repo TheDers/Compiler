@@ -554,6 +554,7 @@ class ReservedWords {
                 ch = (char) r;
                 if(ch==' ')
                 {
+                    lexeme = "if";
                     return "MP_IF";
                 }
             }
@@ -1220,7 +1221,7 @@ class ReservedWords {
                                     }
                                 }
                             }
-                            if(ch==' ')
+                            if(ch==' '||ch=='\n')
                             {
                                 lexeme = "write";
                                 return "MP_WRITE";
