@@ -21,1530 +21,174 @@ class ReservedWords {
     BufferedReader buffer;
     File file;
     int row, column;
-    char first_token;
+    char first_token,ch;
+    boolean whitespace;
     String lexeme;
+    String tempLex;
+    
     ReservedWords(File in_file, int in_row, int in_column, char in_first_token)
     {
         file = in_file;
         row = in_row;
         column = in_column;
         first_token = in_first_token;
+        whitespace = false;
+        tempLex = "";
+        lexeme = "";
     }
     public String getToken() throws FileNotFoundException, IOException
     {
+        lexeme = lexeme+first_token;
+        tempLex = tempLex+first_token;
         buffer = new BufferedReader(new FileReader(file));
-        switch (first_token)
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        while(whitespace == false){
+            r = buffer.read();
+            column++;
+            ch = (char) r;
+            if(ch != ' ')
+            {
+                tempLex = tempLex+ch;
+                lexeme = lexeme+ch;
+            }
+            else
+            {
+                whitespace = true;
+            }
+        }
+        tempLex = tempLex.toLowerCase();
+        switch (tempLex)
         {
-            case 'a':
-                return beginsA();
-            case 'b':
-                return beginsB();
-            case 'c':
-                return beginsC();
-            case 'd':
-                return beginsD();
-            case 'e':
-                return beginsE();
-            case 'f':
-                return beginsF();
-            case 'g':
-                return beginsG();
-            case 'h':
-                return beginsH();
-            case 'i':
-                return beginsI();
-            case 'j':
-                return beginsJ();
-            case 'k':
-                return beginsK();
-            case 'l':
-                return beginsL();
-            case 'm':
-                return beginsM();
-            case 'n':
-                return beginsN();
-            case 'o':
-                return beginsO();
-            case 'p':
-                return beginsP();
-            case 'q':
-                return beginsQ();
-            case 'r':
-                return beginsR();
-            case 's':
-                return beginsS();
-            case 't':
-                return beginsT();
-            case 'u':
-                return beginsU();
-            case 'v':
-                return beginsV();
-            case 'w':
-                return beginsW();
-            case 'x':
-                return beginsX();
-            case 'y':
-                return beginsY();
-            case 'z':
-                return beginsZ();
-            case 'A':
-                return beginsA();
-            case 'B':
-                return beginsB();
-            case 'C':
-                return beginsC();
-            case 'D':
-                return beginsD();
-            case 'E':
-                return beginsE();
-            case 'F':
-                return beginsF();
-            case 'G':
-                return beginsG();
-            case 'H':
-                return beginsH();
-            case 'I':
-                return beginsI();
-            case 'J':
-                return beginsJ();
-            case 'K':
-                return beginsK();
-            case 'L':
-                return beginsL();
-            case 'M':
-                return beginsM();
-            case 'N':
-                return beginsN();
-            case 'O':
-                return beginsO();
-            case 'P':
-                return beginsP();
-            case 'Q':
-                return beginsQ();
-            case 'R':
-                return beginsR();
-            case 'S':
-                return beginsS();
-            case 'T':
-                return beginsT();
-            case 'U':
-                return beginsU();
-            case 'V':
-                return beginsV();
-            case 'W':
-                return beginsW();
-            case 'X':
-                return beginsX();
-            case 'Y':
-                return beginsY();
-            case 'Z':
-                return beginsZ();
+            case "a":
+                return "Letter";
+            case "b":
+                return "Letter";
+            case "c":
+                return "Letter";
+            case "d":
+                return "Letter";
+            case "e":
+                return "Letter";
+            case "f":
+                return "Letter";
+            case "g":
+                return "Letter";
+            case "h":
+                return "Letter";
+            case "i":
+                return "Letter";
+            case "j":
+                return "Letter";
+            case "k":
+                return "Letter";
+            case "l":
+                return "Letter";
+            case "m":
+                return "Letter";
+            case "n":
+                return "Letter";
+            case "o":
+                return "Letter";
+            case "p":
+                return "Letter";
+            case "q":
+                return "Letter";
+            case "r":
+                return "Letter";
+            case "s":
+                return "Letter";
+            case "t":
+                return "Letter";
+            case "u":
+                return "Letter";
+            case "v":
+                return "Letter";
+            case "w":
+                return "Letter";
+            case "x":
+                return "Letter";
+            case "y":
+                return "Letter";
+            case "z":
+                return "Letter";
+            case "and":
+                return andToken();
+            case "begin":
+                return beginToken();
+            case "boolean":
+                return booleanToken();
+            case "div":
+                return divToken();
+            case "do":
+                return doToken();
+            case "downto":
+                return downtoToken();
+            case "else":
+                return elseToken();
+            case "end":
+                return endToken();
+            case "false":
+                return falseToken();
+            case "fixed":
+                return fixedToken();
+            case "float":
+                return floatToken();
+            case "for":
+                return forToken();
+            case "function":
+                return functionToken();
+            case "if":
+                return ifToken();
+            case "integer":
+                return integerToken();
+            case "mod":
+                return modToken();
+            case "not":
+                return notToken();
+            case "or":
+                return orToken();
+            case "procedure":
+                return procedureToken();
+            case "program":
+                return programToken();
+            case "read":
+                return readToken();
+            case "repeat":
+                return repeatToken();
+            case "string":
+                return stringToken();
+            case "then":
+                return thenToken();
+            case "true":
+                return trueToken();
+            case "to":
+                return toToken();
+            case "until":
+                return untilToken();
+            case "var":
+                return varToken();
+            case "while":
+                return whileToken();
+            case "write":
+                return writeToken();
+            case "writeln":
+                return writelnToken();    
             default:
-                return"Default on switch ";
+                return newIdentifier();
         }  
     }
-
-    public String beginsA () throws IOException
+    public String newIdentifier()
     {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "a";
-                return "Letter";
-            }
-            if(ch=='n'||ch=='N')
-            {
-                r = buffer.read();
-                column++;
-                ch = (char) r;
-                if(ch=='d'||ch=='D')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "and";
-                        return "MP_AND";
-                    }
-                }
-            }
-        }
         return "MP_IDENTIFIER";
-    }
-    public String beginsB () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "b";
-                return "Letter";
-            }
-            if(ch=='e'||ch=='E')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'g'||ch=='G')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='i'||ch=='I')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='n'||ch=='N')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "begin";
-                                return "MP_BEGIN";
-                            }
-                        }
-                    }
-                }
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'o'||ch=='O')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='l'||ch=='L')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='e'||ch=='E')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='a'||ch=='A')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch=='n'||ch=='N')
-                                {
-                                    r = buffer.read(); 
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch==' ')
-                                    {
-                                        lexeme = "boolean";
-                                        return "MP_BOOLEAN";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-     public String beginsC () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "c";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsD () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "d";
-                return "Letter";
-            }
-            if(ch=='i'||ch=='I')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'v'||ch=='V')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "div";
-                        return "MP_DIV";
-                    }
-                }
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == ' ')
-                {
-                    lexeme = "do";
-                    return "M_DO";
-                }
-                if(ch == 'w'||ch=='W')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='n'||ch=='N')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='t'||ch=='T')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='o'||ch=='O')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch==' ')
-                                {
-                                    lexeme = "downto";
-                                    return "MP_DOWNTO";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsE () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "e";
-                return "Letter";
-            }
-            if(ch=='l'||ch=='L')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 's'||ch=='S')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='e'||ch=='E')
-                    {
-                        r = buffer.read();
-                        column++;
-                        ch = (char) r;
-                        if(ch==' ')
-                        {
-                            lexeme = "else";
-                            return "MP_ELSE";
-                        }
-                    }
-                }
-            }
-            if(ch=='n'||ch=='N')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'd'||ch=='D')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "end";
-                        return "MP_END";
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsF () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "f";
-                return "Letter";
-            }
-            if(ch=='a'||ch=='A')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'l'||ch=='L')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch == 's'||ch=='S')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch == 'e'||ch=='E')
-                        {
-                            r = buffer.read();
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "false";
-                                return "MP_FALSE";
-                            }
-                        }
-                    }
-                }
-            }
-            if(ch=='i'||ch=='I')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'x'||ch=='X')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch == 'e'||ch=='E')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch == 'd'||ch=='D')
-                        {
-                            r = buffer.read();
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "fixed";
-                                return "MP_FIXED";
-                            }
-                        }
-                    }
-                }
-            }
-            if(ch=='l'||ch=='L')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'o'||ch=='O')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='a'||ch=='A')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='t'||ch=='T')
-                        {
-                            r = buffer.read();
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "float";
-                                return "MP_FLOAT";
-                            }
-                        }
-                    }
-                }
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'r'||ch=='R')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "for";
-                        return "MP_FOR";
-                    }
-                }
-            }
-            if(ch=='u'||ch=='U')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'n'||ch=='N')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch == 'c'||ch=='C')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch == 't'||ch=='T')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch == 'i'||ch=='I')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch == 'o'||ch=='O')
-                                {
-                                    r = buffer.read(); 
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch == 'n'||ch=='N')
-                                    {
-                                        r = buffer.read();
-                                        column++;
-                                        ch = (char) r;
-                                        if(ch==' ')
-                                        {
-                                            lexeme = "function";
-                                            return "MP_FUNCTION";
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsG () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "c";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsH () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "h";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsI () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme ="i";
-                return "Letter";
-            }
-            if(ch=='f'||ch=='F')
-            {
-                r = buffer.read();
-                column++;
-                ch = (char) r;
-                if(ch==' ')
-                {
-                    lexeme = "if";
-                    return "MP_IF";
-                }
-            }
-            if(ch=='n'||ch=='N')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 't'||ch=='T')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='e'||ch=='E')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='g'||ch=='G')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='e'||ch=='E')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch=='r'||ch=='R')
-                                {
-                                    r = buffer.read();
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch==' ')
-                                    {
-                                        lexeme = "integer";
-                                        return "MP_INTEGER";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsJ () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "j";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsK () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "k";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsL () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "l";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsM () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "m";
-                return "Letter";
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(r=='d'||ch=='D')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "mod";
-                        return "MP_MOD";
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsN () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "n";
-                return "Letter";
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(r=='t'||ch=='T')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "not";
-                        return "MP_NOT";
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsO () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "o";
-                return "Letter";
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read();
-                column++;
-                ch = (char) r;
-                if(ch==' ')
-                {
-                    lexeme = "or";
-                    return"MP_OR";
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsP () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "p";
-                return "Letter";
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch =='o'||ch=='O')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='g'||ch=='G')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='r'||ch=='R')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='a'||ch=='A')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch=='m'||ch=='M')
-                                {
-                                    r = buffer.read();
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch==' ')
-                                    {
-                                        lexeme = "program";
-                                        return "MP_PROGRAM";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if(ch=='c'||ch=='C')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='e'||ch=='E')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='d'||ch=='D')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch=='u'||ch=='U')
-                                {
-                                    r = buffer.read(); 
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch=='r'||ch=='R')
-                                    {
-                                        r = buffer.read(); 
-                                        column++;
-                                        ch = (char) r;
-                                        if(ch=='e'||ch=='E')
-                                        {
-                                            r = buffer.read();
-                                            column++;
-                                            ch = (char) r;
-                                            if(ch==' ')
-                                            {
-                                                lexeme = "procedure";
-                                                return "MP_PROCEDURE";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsQ () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "q";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsR () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "r";
-                return "Letter";
-            }
-            if(ch=='e'||ch=='E')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'a'||ch=='A')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='d'||ch=='D')
-                    {
-                        r = buffer.read();
-                        column++;
-                        ch = (char) r;
-                        if(ch==' ')
-                        {
-                            lexeme = "read";
-                            return "MP_READ";
-                        }
-                    }
-                }
-                if(ch == 'p'||ch=='P')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='e'||ch=='E')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='a'||ch=='A')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='t'||ch=='T')
-                            {
-                                r = buffer.read();
-                                column++;
-                                ch = (char) r;
-                                if(ch==' ')
-                                {
-                                    lexeme = "repeat";
-                                    return "MP_REPEAT";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsS() throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "s";
-                return "Letter";
-            }
-            if(ch=='t'||ch=='T')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch=='r'||ch=='R')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='i'||ch=='I')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='n'||ch=='N')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='g'||ch=='G')
-                            {
-                                r = buffer.read();
-                                column++;
-                                ch = (char) r;
-                                if(ch==' ')
-                                {
-                                    lexeme = "string";
-                                    return "MP_STRING";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsT () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "t";
-                return "Letter";
-            }
-            if(ch=='h'||ch=='H')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'e'||ch=='E')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='n'||ch=='N')
-                    {
-                        r = buffer.read();
-                        column++;
-                        ch = (char) r;
-                        if(ch==' ')
-                        {
-                            lexeme = "then";
-                            return "MP_THEN";
-                        }
-                    }
-                }
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'u'||ch=='U')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch == 'e'||ch=='E')
-                    {
-                        r = buffer.read();
-                        column++;
-                        ch = (char) r;
-                        if(ch==' ')
-                        {
-                            lexeme = "true";
-                            return "M_TRUE";
-                        }
-                    }
-                }
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read();
-                column++;
-                ch = (char) r;
-                if(ch==' ')
-                {
-                    lexeme = "to";
-                    return "MP_TO";
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsU () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "u";
-                return "Letter";
-            }
-            if(ch=='n'||ch=='N')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch=='t'||ch=='T')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='i'||ch=='I')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='l'||ch=='L')
-                        {
-                            r = buffer.read();
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "until";
-                                return "MP_UNTIL";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsV () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "v";
-                return "Letter";
-            }
-            if(ch=='a'||ch=='A')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch=='r'||ch=='R')
-                {
-                    r = buffer.read();
-                    column++;
-                    ch = (char) r;
-                    if(ch==' ')
-                    {
-                        lexeme = "var";
-                        return "MP_VAR";
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsW () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "w";
-                return "Letter";
-            }
-            if(ch=='h'||ch=='H')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'i'||ch=='I')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='l'||ch=='L')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='e'||ch=='E')
-                        {
-                            r = buffer.read();
-                            column++;
-                            ch = (char) r;
-                            if(ch==' ')
-                            {
-                                lexeme = "while";
-                                return "MP_WHILE";
-                            }
-                        }
-                    }
-                }
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read(); 
-                column++;
-                ch = (char) r;
-                if(ch == 'i'||ch=='I')
-                {
-                    r = buffer.read(); 
-                    column++;
-                    ch = (char) r;
-                    if(ch=='t'||ch=='T')
-                    {
-                        r = buffer.read(); 
-                        column++;
-                        ch = (char) r;
-                        if(ch=='e'||ch=='E')
-                        {
-                            r = buffer.read(); 
-                            column++;
-                            ch = (char) r;
-                            if(ch=='l'||ch=='L')
-                            {
-                                r = buffer.read(); 
-                                column++;
-                                ch = (char) r;
-                                if(ch=='n'||ch=='N')
-                                {
-                                    r = buffer.read();
-                                    column++;
-                                    ch = (char) r;
-                                    if(ch==' ')
-                                    {
-                                        lexeme = "writeln";
-                                        return "MP_WRITELN";
-                                    }
-                                }
-                            }
-                            if(ch==' '||ch=='\n')
-                            {
-                                lexeme = "write";
-                                return "MP_WRITE";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsX () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "x";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsY () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "y";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
-    public String beginsZ () throws IOException
-    {
-        int temp = 0;
-        int r = 0;
-        while(temp<row){
-            buffer.readLine();
-            temp++;
-        }
-        
-        for(int j = 0;j<=column;j++){
-                     buffer.read();
-        }
-        r = buffer.read();
-        {
-            column++;
-            char ch = (char) r;
-            if(ch==' ')
-            {
-                lexeme = "z";
-                return "Letter";
-            }
-        }
-        return "MP_IDENTIFIER";
-    }
+    }  
     public int getRow()
     {
         return row;
@@ -1556,5 +200,130 @@ class ReservedWords {
     public String getLexeme()
     {
         return lexeme;
+    }
+    public String andToken()
+    {
+        return "MP_AND";
+    }public String beginToken()
+    {
+        return "MP_BEGIN";
+    }
+    public String booleanToken()
+    {
+        return "MP_BOOLEAN";
+    }
+    public String divToken()
+    {
+        return "MP_DIV";
+    }
+    public String doToken()
+    {
+        return "MP_DO";
+    }
+    public String downtoToken()
+    {
+        return "MP_DOWNTO";
+    }
+    public String elseToken()
+    {
+        return "MP_ELSE";
+    }
+    public String endToken()
+    {
+        return "MP_END";
+    }
+    public String falseToken()
+    {
+        return "MP_FALSE";
+    }
+    public String fixedToken()
+    {
+        return "MP_FIXED";
+    }
+    public String floatToken()
+    {
+        return "MP_FLOAT";
+    }public String forToken()
+    {
+        return "MP_FOR";
+    }
+    public String functionToken()
+    {
+        return "MP_FUNCTION";
+    }
+    public String ifToken()
+    {
+        return "MP_IF";
+    }
+    public String integerToken()
+    {
+        return "MP_INTEGER";
+    }
+    public String modToken()
+    {
+        return "MP_MOD";
+    }
+    public String notToken()
+    {
+        return "MP_NOT";
+    }
+    public String orToken()
+    {
+        return "MP_OR";
+    }
+    public String procedureToken()
+    {
+        return "MP_PROCEDURE";
+    }
+    public String programToken()
+    {
+        return "MP_PROGRAM";
+    }
+    public String readToken()
+    {
+        return "MP_READ";
+    }public String repeatToken()
+    {
+        return "MP_REPEAT";
+    }
+    public String stringToken()
+    {
+        return "MP_STIRNG";
+    }
+    public String thenToken()
+    {
+        return "MP_THEN";
+    }
+    public String And()
+    {
+        return "MP_AND";
+    }
+    public String trueToken()
+    {
+        return "MP_TRUE";
+    }
+    public String toToken()
+    {
+        return "MP_TO";
+    }
+    public String untilToken()
+    {
+        return "MP_UNTIL";
+    }
+    public String varToken()
+    {
+        return "MP_VAR";
+    }
+    public String whileToken()
+    {
+        return "MP_WHILE";
+    }
+    public String writeToken()
+    {
+        return "MP_WRITE";
+    }
+    public String writelnToken()
+    {
+        return "MP_WRITELN";
     }
 }
