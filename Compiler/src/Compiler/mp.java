@@ -346,7 +346,7 @@ public class mp
                     int difference = tokenColNum-colNum;
                     System.out.println(tokenColNum);
                     System.out.println(colNum);
-                    for(int i = 0;i<difference-1;i++){
+                    for(int i = 0;i<difference;i++){
                         buffer.read();
                     }
                     colNum = tokenColNum;
