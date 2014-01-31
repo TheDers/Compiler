@@ -87,6 +87,58 @@ class ReservedWords {
                 return beginsY();
             case 'z':
                 return beginsZ();
+            case 'A':
+                return beginsA();
+            case 'B':
+                return beginsB();
+            case 'C':
+                return beginsC();
+            case 'D':
+                return beginsD();
+            case 'E':
+                return beginsE();
+            case 'F':
+                return beginsF();
+            case 'G':
+                return beginsG();
+            case 'H':
+                return beginsH();
+            case 'I':
+                return beginsI();
+            case 'J':
+                return beginsJ();
+            case 'K':
+                return beginsK();
+            case 'L':
+                return beginsL();
+            case 'M':
+                return beginsM();
+            case 'N':
+                return beginsN();
+            case 'O':
+                return beginsO();
+            case 'P':
+                return beginsP();
+            case 'Q':
+                return beginsQ();
+            case 'R':
+                return beginsR();
+            case 'S':
+                return beginsS();
+            case 'T':
+                return beginsT();
+            case 'U':
+                return beginsU();
+            case 'V':
+                return beginsV();
+            case 'W':
+                return beginsW();
+            case 'X':
+                return beginsX();
+            case 'Y':
+                return beginsY();
+            case 'Z':
+                return beginsZ();
             default:
                 return"Default on switch ";
         }  
