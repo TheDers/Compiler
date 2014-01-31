@@ -195,11 +195,6 @@ class ReservedWords {
                 {
                     return "M_DO";
                 }
-            }
-            if(ch=='o'||ch=='O')
-            {
-                r = buffer.read();
-                ch = (char) r;
                 if(ch == 'w'||ch=='W')
                 {
                     r = buffer.read();
@@ -551,16 +546,6 @@ class ReservedWords {
                             }
                         }
                     }
-                }
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read();
-                ch = (char) r;
-                if(ch == 'o'||ch=='O')
-                {
-                    r = buffer.read();
-                    ch = (char) r;
                     if(ch=='c'||ch=='C')
                     {
                         r = buffer.read();
@@ -623,11 +608,6 @@ class ReservedWords {
                         return "MP_READ";
                     }
                 }
-            }
-            if(ch=='e'||ch=='E')
-            {
-                r = buffer.read();
-                ch = (char) r;
                 if(ch == 'p'||ch=='P')
                 {
                     r = buffer.read();
@@ -792,7 +772,7 @@ class ReservedWords {
                     {
                         r = buffer.read();
                         ch = (char) r;
-                        if(ch=='l'||ch=='L')
+                        if(ch=='e'||ch=='E')
                         {
                             return "MP_WHILE";
                         }
@@ -813,28 +793,7 @@ class ReservedWords {
                         ch = (char) r;
                         if(ch=='e'||ch=='E')
                         {
-                            return "MP_WRITE";
-                        }
-                    }
-                }
-            }
-            if(ch=='r'||ch=='R')
-            {
-                r = buffer.read();
-                ch = (char) r;
-                if(ch == 'i'||ch=='I')
-                {
-                    r = buffer.read();
-                    ch = (char) r;
-                    if(ch=='t'||ch=='T')
-                    {
-                        r = buffer.read();
-                        ch = (char) r;
-                        if(ch=='e'||ch=='E')
-                        {
-                            r = buffer.read();
-                            ch = (char) r;
-                            if(ch=='i'||ch=='I')
+                            if(ch=='l'||ch=='L')
                             {
                                 r = buffer.read();
                                 ch = (char) r;
@@ -842,6 +801,10 @@ class ReservedWords {
                                 {
                                     return "MP_WRITEIN";
                                 }
+                            }
+                            if(ch==' ')
+                            {
+                                return "MP_WRITE";
                             }
                         }
                     }
