@@ -74,14 +74,17 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
+        if(row>1)
         {
-            buffer.readLine();
-            temp++;
-        }while(temp<row);
+            do
+            {
+                buffer.readLine();
+                temp++;
+            }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
-            //do nothing
+            column++;
         }
         while((r = buffer.read()) != -1)
         {
@@ -864,5 +867,9 @@ class ReservedWords {
             }
         }
         return "MP_IDENTIFIER";
-    } 
+    }
+    public int getRowandColumn()
+    {
+        return 0;
+    }
 }
