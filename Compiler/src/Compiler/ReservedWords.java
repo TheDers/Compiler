@@ -58,6 +58,8 @@ class ReservedWords {
                 return beginsP();
             case 'r':
                 return beginsR();
+            case 's':
+                return beginsS();
             case 't':
                 return beginsT();
             case 'u':
@@ -1203,6 +1205,6 @@ class ReservedWords {
     }
     public String getLexeme()
     {
-        return "dees nuts";
+        return lexeme;
     }
 }
