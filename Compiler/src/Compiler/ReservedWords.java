@@ -81,6 +81,10 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
             if(ch=='n'||ch=='N')
             {
                 r = buffer.read();
@@ -97,11 +101,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -164,11 +167,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -225,11 +227,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -267,11 +268,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -386,11 +386,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -438,11 +437,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -466,11 +464,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -494,11 +491,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -517,11 +513,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -604,11 +599,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -661,11 +655,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -712,11 +705,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -750,11 +742,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
@@ -778,11 +769,10 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        do
-        {
+        while(temp<row){
             buffer.readLine();
             temp++;
-        }while(temp<row);
+        }
         
         while ((r = buffer.read()) < column) {
             //do nothing
