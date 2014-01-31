@@ -39,14 +39,26 @@ class ReservedWords {
                 return beginsA();
             case 'b':
                 return beginsB();
+            case 'c':
+                return beginsC();
             case 'd':
                 return beginsD();
             case 'e':
                 return beginsE();
             case 'f':
                 return beginsF();
+            case 'g':
+                return beginsG();
+            case 'h':
+                return beginsH();
             case 'i':
                 return beginsI();
+            case 'j':
+                return beginsJ();
+            case 'k':
+                return beginsK();
+            case 'l':
+                return beginsL();
             case 'm':
                 return beginsM();
             case 'n':
@@ -55,6 +67,8 @@ class ReservedWords {
                 return beginsO();
             case 'p':
                 return beginsP();
+            case 'q':
+                return beginsQ();
             case 'r':
                 return beginsR();
             case 's':
@@ -67,6 +81,12 @@ class ReservedWords {
                 return beginsV();
             case 'w':
                 return beginsW();
+            case 'x':
+                return beginsX();
+            case 'y':
+                return beginsY();
+            case 'z':
+                return beginsZ();
             default:
                 return"Default on switch ";
         }  
@@ -202,6 +222,30 @@ class ReservedWords {
                         }
                     }
                 }
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+     public String beginsC () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "c";
+                return "Letter";
             }
         }
         return "MP_IDENTIFIER";
@@ -526,6 +570,54 @@ class ReservedWords {
         }
         return "MP_IDENTIFIER";
     }
+    public String beginsG () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "c";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsH () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "h";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
     public String beginsI () throws IOException
     {
         int temp = 0;
@@ -598,6 +690,78 @@ class ReservedWords {
                         }
                     }
                 }
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsJ () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "j";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsK () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "k";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsL () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "l";
+                return "Letter";
             }
         }
         return "MP_IDENTIFIER";
@@ -821,6 +985,30 @@ class ReservedWords {
                         }
                     }
                 }
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsQ () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "q";
+                return "Letter";
             }
         }
         return "MP_IDENTIFIER";
@@ -1229,6 +1417,78 @@ class ReservedWords {
                         }
                     }
                 }
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsX () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "x";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsY () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "y";
+                return "Letter";
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsZ () throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
+        r = buffer.read();
+        {
+            column++;
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                lexeme = "z";
+                return "Letter";
             }
         }
         return "MP_IDENTIFIER";
