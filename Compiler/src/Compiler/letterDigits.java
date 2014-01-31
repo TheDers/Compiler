@@ -4,61 +4,148 @@
  * and open the template in the editor.
  */
 package Compiler;
+
 import java.io.*;
 
 /**
  *
- * Only going to handle digits, but this includes digits, 
- * integer_lit, fixed_lit, and Float_lit
+ * Only going to handle digits, but this includes digits, integer_lit,
+ * fixed_lit, and Float_lit
  *
  */
-
 public class letterDigits {
-    
+
     File file;
     int row, column;
     char token, next_token;
     String lexeme = "";
     int c = 0;
+
     public letterDigits(File in_file, int in_row, int in_column, char first_token) {
         file = in_file;
         row = in_row;
         column = in_column;
         token = first_token;
     }
-    
-    public String getToken()throws IOException{
+
+    public String getToken() throws IOException {
         lexeme = lexeme + token;
         column++;
         BufferedReader buffer = new BufferedReader(new FileReader(file));
-        try{
-            while((c = buffer.read()) != -1) 
-                {
-                    for(int i = 0;i<row;i++){
-                        buffer.readLine();
-                    }
-                    for(int j = 0;j<column-1;j++){
-                        next_token = (char)buffer.read();
-                    }
+        try {
+            for(int i = 0;i<row;i++){
+                    buffer.readLine();
                 }
-            if(Character.isDigit(next_token)){
-                return "";
-            }else{
-                return "";
-            }
-        }
-        catch(IOException e){
-                System.out.println("General I/O exception: " + e.getMessage());
-                return "ERROR";
+                for(int j = 0;j<=column-1;j++){
+                    buffer.read();
+                }
+                next_token = (char)buffer.read();
+            //if (Character.isDigit(next_token)) {
+                if(next_token == ' '){
+                    return "digit";
+                }
+                while (Character.isDigit(next_token)) {
+                    lexeme = lexeme + next_token;
+                    column++;
+                    next_token = (char) buffer.read();
+                }
+                
+                
+                if (next_token == '.') {
+                    lexeme = lexeme + next_token;
+                    column++;
+                    next_token = (char) buffer.read();
+                    if (Character.isDigit(next_token)) {
+                        while (Character.isDigit(next_token)) {
+                            lexeme = lexeme + next_token;
+                            column++;
+                            next_token = (char) buffer.read();
+                        }
+                        if (next_token == 'e' || next_token == 'E') {
+                            lexeme = lexeme + next_token;
+                            column++;
+                            next_token = (char) buffer.read();
+                            if (Character.isDigit(next_token)) {
+                                while (Character.isDigit(next_token)) {
+                                    lexeme = lexeme + next_token;
+                                    column++;
+                                    next_token = (char) buffer.read();
+                                }
+                                return "NP_FLOAT_LIT";
+                            } else if (next_token == '+' || next_token == '-') {
+                                lexeme = lexeme + next_token;
+                                column++;
+                                next_token = (char) buffer.read();
+                                if (Character.isDigit(next_token)) {
+                                    while (Character.isDigit(next_token)) {
+                                        lexeme = lexeme + next_token;
+                                        column++;
+                                        next_token = (char) buffer.read();
+                                    }
+                                    return "NP_FLOAT_LIT";
+                                } else {
+                                    return "ERROR";
+                                }
+                            } else {
+                                return "ERROR";
+                            }
+                        } else {
+                            return "MP_FIXED_LIT";
+                        }
+                    } else {
+                        return "ERROR";
+                    }
+                } else if (next_token == 'e' || next_token == 'E') {
+                    lexeme = lexeme + next_token;
+                    column++;
+                    next_token = (char) buffer.read();
+                    if (Character.isDigit(next_token)) {
+                        while (Character.isDigit(next_token)) {
+                            lexeme = lexeme + next_token;
+                            column++;
+                            next_token = (char) buffer.read();
+                        }
+                        return "NP_FLOAT_LIT";
+                    } else if (next_token == '+' || next_token == '-') {
+                        lexeme = lexeme + next_token;
+                        column++;
+                        next_token = (char) buffer.read();
+                        if (Character.isDigit(next_token)) {
+                            while (Character.isDigit(next_token)) {
+                                lexeme = lexeme + next_token;
+                                column++;
+                                next_token = (char) buffer.read();
+                            }
+                            return "NP_FLOAT_LIT";
+
+                        } else {
+                            return "ERROR";
+                        }
+                    } else {
+                        return "ERROR";
+                    }
+                } else {
+                    return "MP_INTEGER_LIT";
+                }
+
+            /*} else {
+                return "digit";
+            }*/
+        } catch (IOException e) {
+            System.out.println("General I/O exception: " + e.getMessage());
+            return "ERROR";
         }
     }
-    public String getLexeme(){
+
+    public String getLexeme() {
         return lexeme;
     }
-    public int getRow(){
+
+    public int getRow() {
         return row;
     }
-    public int getColumn(){
+
+    public int getColumn() {
         return column;
     }
 }

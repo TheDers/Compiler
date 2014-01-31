@@ -35,8 +35,6 @@ public class mp
             boolean isSymbol = false;
             boolean isReservedWord = false;
             boolean isLetterDigit = false;
-
-
             
             while((c = buffer.read()) != -1) 
             {   
@@ -98,160 +96,160 @@ public class mp
                            isSymbol = true;
                            break;
                        case 'a':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'b':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'c':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'd':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'e':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'f':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'g':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'h':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'i':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'j':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'k':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'l':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'm':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'n':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'o':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'p':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'q':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'r':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 's':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 't':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'u':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'v':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'w':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'x':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'y':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'z':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'A':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'B':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'C':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'D':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'E':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'F':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'G':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'H':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'I':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'J':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'K':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'L':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'M':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'N':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'O':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'P':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'Q':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'R':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'S':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'T':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'U':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'V':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'W':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'X':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'Y':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case 'Z':
-                           isLetterDigit = true;
+                           isReservedWord = true;
                            break;
                        case '0':
                            isLetterDigit = true;
@@ -304,10 +302,19 @@ public class mp
                 if (isLetterDigit == true)
                 {
                     letterDigits letterDigit = new letterDigits(file, rowNum, colNum, character);
-                    //String results = letterDigit.getToken();
+                    String token = letterDigit.getToken();
+                    int tokenRowNum = letterDigit.getRow();
+                    int tokenColNum = letterDigit.getColumn();
+                    int difference = tokenColNum-colNum;
+                    for(int i = 0;i<difference-1;i++){
+                        buffer.read();
+                    }
+                    colNum = tokenColNum;
+                    String lexeme = letterDigit.getLexeme();
+                    printDigit(token, tokenRowNum, colPrint, lexeme);
 
                 }
-                if (isReservedWord == true || isLetterDigit)
+                if (isReservedWord == true)
                 {
                     ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
                     String token = rWord.getToken();

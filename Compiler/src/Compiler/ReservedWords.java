@@ -74,17 +74,9 @@ class ReservedWords {
     {
         int temp = 0;
         int r = 0;
-        if(row>1)
-        {
-            do
-            {
-                buffer.readLine();
-                temp++;
-            }while(temp<row);
-        }
-        
-        while ((r = buffer.read()) < column) {
-            column++;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
         }
         while((r = buffer.read()) != -1)
         {
