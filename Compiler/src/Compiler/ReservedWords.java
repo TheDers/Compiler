@@ -18,7 +18,6 @@ import java.io.IOException;
  */
 
 class ReservedWords {
-
     BufferedReader buffer;
     File file;
     int row, column;
@@ -28,7 +27,7 @@ class ReservedWords {
     {
         file = in_file;
         row = in_row;
-        column = in_column+1;
+        column = in_column;
         first_token = in_first_token;
     }
     public String getToken() throws FileNotFoundException, IOException
@@ -81,8 +80,8 @@ class ReservedWords {
             buffer.readLine();
             temp++;
         }
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -122,8 +121,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -216,8 +215,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -297,8 +296,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -361,8 +360,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -536,8 +535,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -611,8 +610,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -652,8 +651,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -693,8 +692,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -728,8 +727,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -834,8 +833,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -909,6 +908,9 @@ class ReservedWords {
             buffer.readLine();
             temp++;
         }
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
+        }
         r = buffer.read();
         {
             column++;
@@ -965,8 +967,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -1046,8 +1048,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -1099,8 +1101,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -1140,8 +1142,8 @@ class ReservedWords {
             temp++;
         }
         
-        while ((r = buffer.read()) < column) {
-            //do nothing
+        for(int j = 0;j<=column;j++){
+                     buffer.read();
         }
         r = buffer.read();
         {
@@ -1220,14 +1222,8 @@ class ReservedWords {
                             }
                             if(ch==' ')
                             {
-                                r = buffer.read();
-                                column++;
-                                ch = (char) r;
-                                if(ch==' ')
-                                {
-                                    lexeme = "write";
-                                    return "MP_WRITE";
-                                }
+                                lexeme = "write";
+                                return "MP_WRITE";
                             }
                         }
                     }
