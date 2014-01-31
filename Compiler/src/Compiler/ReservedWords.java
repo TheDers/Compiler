@@ -23,6 +23,7 @@ class ReservedWords {
     File file;
     int row, column;
     char first_token;
+    String lexeme;
     ReservedWords(File in_file, int in_row, int in_column, char in_first_token)
     {
         file = in_file;
@@ -85,13 +86,19 @@ class ReservedWords {
             {
                 return "Letter";
             }
+            column++;
             if(ch=='n'||ch=='N')
             {
                 r = buffer.read();
+                column++;
                 ch = (char) r;
                 if(ch=='d'||ch=='D')
                 {
-                    return "MP_AND";
+                    r = buffer.read();
+                    if(ch==' ')
+                    {
+                        return "MP_AND";
+                    }
                 }
             }
         }
@@ -112,48 +119,71 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='e'||ch=='E')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'g'||ch=='G')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='i'||ch=='I')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='n'||ch=='N')
                         {
-                            return "MP_BEGIN";
+                            r = buffer.read(); 
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_BEGIN";
+                            }
                         }
                     }
                 }
             }
             if(ch=='o'||ch=='O')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'o'||ch=='O')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='l'||ch=='L')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='e'||ch=='E')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='a'||ch=='A')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch=='n'||ch=='N')
                                 {
-                                    return "MP_BOOLEAN";
+                                    r = buffer.read(); 
+                                    ch = (char) r;
+                                    if(ch==' ')
+                                    {
+                                        return "MP_BOOLEAN";
+                                    }
                                 }
                             }
                         }
@@ -178,9 +208,15 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='i'||ch=='I')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'v'||ch=='V')
                 {
@@ -189,7 +225,8 @@ class ReservedWords {
             }
             if(ch=='o'||ch=='O')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == ' ')
                 {
@@ -197,19 +234,27 @@ class ReservedWords {
                 }
                 if(ch == 'w'||ch=='W')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='n'||ch=='N')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='t'||ch=='T')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='o'||ch=='O')
                             {
-                                return "MP_DOWNTO";
+                                r = buffer.read(); 
+                                ch = (char) r;
+                                if(ch==' ')
+                                {
+                                    return "MP_DOWNTO";
+                                }
                             }
                         }
                     }
@@ -233,27 +278,45 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='l'||ch=='L')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 's'||ch=='S')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='e'||ch=='E')
                     {
-                        return "MP_ELSE";
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch==' ')
+                        {
+                            return "MP_ELSE";
+                        }
                     }
                 }
             }
             if(ch=='n'||ch=='N')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'd'||ch=='D')
                 {
-                    return "MP_END";
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        return "MP_END";
+                    }
                 }
             }
         }
@@ -274,99 +337,145 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='a'||ch=='A')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'l'||ch=='L')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch == 's'||ch=='S')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch == 'e'||ch=='E')
                         {
-                            return "MP_FALSE";
+                            r = buffer.read(); 
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_FALSE";
+                            }
                         }
                     }
                 }
             }
             if(ch=='i'||ch=='I')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'x'||ch=='X')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch == 'e'||ch=='E')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch == 'd'||ch=='D')
                         {
-                            return "MP_FIXED";
+                            r = buffer.read();
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_FIXED";
+                            }
                         }
                     }
                 }
             }
             if(ch=='l'||ch=='L')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'o'||ch=='O')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='a'||ch=='A')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='t'||ch=='T')
                         {
-                            return "MP_FLOAT";
+                            r = buffer.read();
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_FLOAT";
+                            }
                         }
                     }
                 }
             }
             if(ch=='o'||ch=='O')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'r'||ch=='R')
                 {
-                    return "FOR";
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        return "FOR";
+                    }
                 }
             }
             if(ch=='u'||ch=='U')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'n'||ch=='N')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch == 'c'||ch=='C')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch == 't'||ch=='T')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch == 'i'||ch=='I')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch == 'o'||ch=='O')
                                 {
-                                    r = buffer.read();
+                                    r = buffer.read(); 
+                                    column++;
                                     ch = (char) r;
                                     if(ch == 'n'||ch=='N')
                                     {
-                                        return "MP_FUNCTION";
+                                        r = buffer.read();
+                                        ch = (char) r;
+                                        if(ch==' ')
+                                        {
+                                            return "MP_FUNCTION";
+                                        }
                                     }
                                 }
                             }
@@ -392,33 +501,48 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='f'||ch=='F')
             {
                 return "MP_IF";
             }
             if(ch=='n'||ch=='N')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 't'||ch=='T')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='e'||ch=='E')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='g'||ch=='G')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='e'||ch=='E')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch=='r'||ch=='R')
                                 {
-                                    return "MP_INTEGER";
+                                    r = buffer.read();
+                                    ch = (char) r;
+                                    if(ch==' ')
+                                    {
+                                        return "MP_INTEGER";
+                                    }
                                 }
                             }
                         }
@@ -443,13 +567,24 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='o'||ch=='O')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(r=='d'||ch=='D')
                 {
-                    return "MP_MOD";
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        return "MP_MOD";
+                    }
                 }
             }
         }
@@ -470,13 +605,24 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='o'||ch=='O')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(r=='t'||ch=='T')
                 {
-                    return "MP_NOT";
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        return "MP_NOT";
+                    }
                 }
             }
         }
@@ -497,9 +643,19 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='r'||ch=='R')
             {
-                return"MP_OR";
+                r = buffer.read();
+                ch = (char) r;
+                if(ch==' ')
+                {
+                    return"MP_OR";
+                }
             }
         }
         return "MP_IDENTIFIER";
@@ -519,56 +675,81 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='r'||ch=='R')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch =='o'||ch=='O')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='g'||ch=='G')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='r'||ch=='R')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='a'||ch=='A')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch=='m'||ch=='M')
                                 {
-                                    return "MP_PROGRAM";
+                                    r = buffer.read();
+                                    ch = (char) r;
+                                    if(ch==' ')
+                                    {
+                                        return "MP_PROGRAM";
+                                    }
                                 }
                             }
                         }
                     }
                     if(ch=='c'||ch=='C')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='e'||ch=='E')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='d'||ch=='D')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch=='u'||ch=='U')
                                 {
-                                    r = buffer.read();
+                                    r = buffer.read(); 
+                                    column++;
                                     ch = (char) r;
                                     if(ch=='r'||ch=='R')
                                     {
-                                        r = buffer.read();
+                                        r = buffer.read(); 
+                                        column++;
                                         ch = (char) r;
                                         if(ch=='e'||ch=='E')
                                         {
-                                            return "MP_PROCEDURE";
+                                            r = buffer.read();
+                                            ch = (char) r;
+                                            if(ch==' ')
+                                            {
+                                                return "MP_PROCEDURE";
+                                            }
                                         }
                                     }
                                 }
@@ -595,34 +776,110 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='e'||ch=='E')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'a'||ch=='A')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='d'||ch=='D')
                     {
-                        return "MP_READ";
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch==' ')
+                        {
+                            return "MP_READ";
+                        }
                     }
                 }
                 if(ch == 'p'||ch=='P')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='e'||ch=='E')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='a'||ch=='A')
                         {
-                            r = buffer.read();
+                            r = buffer.read(); 
+                            column++;
                             ch = (char) r;
                             if(ch=='t'||ch=='T')
                             {
-                                return "MP_REPEAT";
+                                r = buffer.read();
+                                ch = (char) r;
+                                if(ch==' ')
+                                {
+                                    return "MP_REPEAT";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return "MP_IDENTIFIER";
+    }
+    public String beginsS() throws IOException
+    {
+        int temp = 0;
+        int r = 0;
+        while(temp<row){
+            buffer.readLine();
+            temp++;
+        }
+        while((r = buffer.read()) != -1)
+        {
+            char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            if(ch=='t'||ch=='T')
+            {
+                r = buffer.read(); 
+                column++;
+                ch = (char) r;
+                if(ch=='r'||ch=='R')
+                {
+                    r = buffer.read(); 
+                    column++;
+                    ch = (char) r;
+                    if(ch=='i'||ch=='I')
+                    {
+                        r = buffer.read(); 
+                        column++;
+                        ch = (char) r;
+                        if(ch=='n'||ch=='N')
+                        {
+                            r = buffer.read(); 
+                            column++;
+                            ch = (char) r;
+                            if(ch=='g'||ch=='G')
+                            {
+                                r = buffer.read();
+                                ch = (char) r;
+                                if(ch==' ')
+                                {
+                                    return "MP_STRING";
+                                }
                             }
                         }
                     }
@@ -646,37 +903,61 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='h'||ch=='H')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'e'||ch=='E')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='n'||ch=='N')
                     {
-                        return "MP_THEN";
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch==' ')
+                        {
+                            return "MP_THEN";
+                        }
                     }
                 }
             }
             if(ch=='r'||ch=='R')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'u'||ch=='U')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch == 'e'||ch=='E')
                     {
-                        return "M_TRUE";
+                        r = buffer.read();
+                        ch = (char) r;
+                        if(ch==' ')
+                        {
+                            return "M_TRUE";
+                        }
                     }
                 }
             }
             if(ch=='o'||ch=='O')
             {
-                return "MP_TO";
+                r = buffer.read();
+                ch = (char) r;
+                if(ch==' ')
+                {
+                    return "MP_TO";
+                }
             }
         }
         return "MP_IDENTIFIER";
@@ -696,21 +977,34 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='n'||ch=='N')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch=='t'||ch=='T')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='i'||ch=='I')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='l'||ch=='L')
                         {
-                            return "MP_UNTIL";
+                            r = buffer.read();
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_UNTIL";
+                            }
                         }
                     }
                 }
@@ -733,13 +1027,24 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='a'||ch=='A')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch=='r'||ch=='R')
                 {
-                    return "MP_VAR";
+                    r = buffer.read();
+                    ch = (char) r;
+                    if(ch==' ')
+                    {
+                        return "MP_VAR";
+                    }
                 }
             }
         }
@@ -760,51 +1065,81 @@ class ReservedWords {
         while((r = buffer.read()) != -1)
         {
             char ch = (char) r;
+            if(ch==' ')
+            {
+                return "Letter";
+            }
+            column++;
             if(ch=='h'||ch=='H')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'i'||ch=='I')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='l'||ch=='L')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='e'||ch=='E')
                         {
-                            return "MP_WHILE";
+                            r = buffer.read();
+                            ch = (char) r;
+                            if(ch==' ')
+                            {
+                                return "MP_WHILE";
+                            }
                         }
                     }
                 }
             }
             if(ch=='r'||ch=='R')
             {
-                r = buffer.read();
+                r = buffer.read(); 
+                column++;
                 ch = (char) r;
                 if(ch == 'i'||ch=='I')
                 {
-                    r = buffer.read();
+                    r = buffer.read(); 
+                    column++;
                     ch = (char) r;
                     if(ch=='t'||ch=='T')
                     {
-                        r = buffer.read();
+                        r = buffer.read(); 
+                        column++;
                         ch = (char) r;
                         if(ch=='e'||ch=='E')
                         {
+                            r = buffer.read(); 
+                            column++;
+                            ch = (char) r;
                             if(ch=='l'||ch=='L')
                             {
-                                r = buffer.read();
+                                r = buffer.read(); 
+                                column++;
                                 ch = (char) r;
                                 if(ch=='n'||ch=='N')
                                 {
-                                    return "MP_WRITEIN";
+                                    r = buffer.read();
+                                    ch = (char) r;
+                                    if(ch==' ')
+                                    {
+                                        return "MP_WRITELN";
+                                    }
                                 }
                             }
                             if(ch==' ')
                             {
-                                return "MP_WRITE";
+                                r = buffer.read();
+                                ch = (char) r;
+                                if(ch==' ')
+                                {
+                                    return "MP_WRITE";
+                                }
                             }
                         }
                     }
@@ -813,8 +1148,16 @@ class ReservedWords {
         }
         return "MP_IDENTIFIER";
     }
-    public int getRowandColumn()
+    public int getRow()
     {
-        return 0;
+        return row;
+    }
+    public int getColumn()
+    {
+        return column;
+    }
+    public String getLexeme()
+    {
+        return "dees nuts";
     }
 }
