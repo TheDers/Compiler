@@ -127,7 +127,7 @@ public class Symbols {
     public String Rparen(){
         column++;
         lexeme = ")";
-        return ")MP_RPAREN";
+        return "MP_RPAREN";
     }
     
     public String Equal(){
