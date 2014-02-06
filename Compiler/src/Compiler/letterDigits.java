@@ -71,7 +71,7 @@ public class letterDigits {
                                     column++;
                                     next_token = (char) buffer.read();
                                 }
-                                return "NP_FLOAT_LIT";
+                                return "MP_FLOAT_LIT";
                             } else if (next_token == '+' || next_token == '-') {
                                 lexeme = lexeme + next_token;
                                 column++;
@@ -82,7 +82,7 @@ public class letterDigits {
                                         column++;
                                         next_token = (char) buffer.read();
                                     }
-                                    return "NP_FLOAT_LIT";
+                                    return "MP_FLOAT_LIT";
                                 } else {
                                     return "ERROR";
                                 }
@@ -105,7 +105,7 @@ public class letterDigits {
                             column++;
                             next_token = (char) buffer.read();
                         }
-                        return "NP_FLOAT_LIT";
+                        return "MP_FLOAT_LIT";
                     } else if (next_token == '+' || next_token == '-') {
                         lexeme = lexeme + next_token;
                         column++;
@@ -116,7 +116,7 @@ public class letterDigits {
                                 column++;
                                 next_token = (char) buffer.read();
                             }
-                            return "NP_FLOAT_LIT";
+                            return "MP_FLOAT_LIT";
 
                         } else {
                             return "ERROR";

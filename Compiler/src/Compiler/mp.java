@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,6 +28,7 @@ public class mp
         }
     public static void dispatcher(File file)throws IOException
         {
+            ArrayList<String> tokenList = new ArrayList<String>();
             BufferedReader buffer = new BufferedReader(new FileReader(file));
             int c = 0;
             int rowNum = 0;
@@ -327,6 +330,7 @@ public class mp
                     }
                     colNum = tokenColNum;
                     String lexeme = symbol.getLexeme();
+                    tokenList.add(token);
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
                 }
                 if (isLetterDigit == true && commentStart == false && stringStart == false)
@@ -341,6 +345,7 @@ public class mp
                     }
                     colNum = tokenColNum;
                     String lexeme = letterDigit.getLexeme();
+                    tokenList.add(token);
                     printDigit(token, tokenRowNum, colPrint, lexeme);
 
                 }
@@ -351,13 +356,16 @@ public class mp
                     int tokenRowNum = rWord.getRow();
                     int tokenColNum = rWord.getColumn();
                     int difference = tokenColNum-colNum;
+
                     //System.out.println(tokenColNum);
                     //System.out.println(colNum);
+
                     for(int i = 0;i<difference-1;i++){
                         buffer.read();
                     }
                     colNum = tokenColNum;
                     String lexeme = rWord.getLexeme();
+                    tokenList.add(token);
                     printReservedWord(token, tokenRowNum, tokenColNum, lexeme);
                 }
                 if (commentStart == true)
@@ -400,18 +408,20 @@ public class mp
 
 
             }
+           System.out.println(tokenList);
+           Parser parse = new Parser(tokenList);
+           
         }
     public static void printSymbol(String token, int rowNum, int colNum, String lexeme)
     {
-        System.out.println("Symbol Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+        //System.out.println("Symbol Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
     }
     public static void printReservedWord(String token, int rowNum, int colNum, String lexeme)
     {
-        System.out.println("Reserved Word Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+        //System.out.println("Reserved Word Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
     }
     public static void printDigit(String token, int rowNum, int colNum, String lexeme)
     {
-        System.out.println("Digit Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
+        //System.out.println("Digit Found: Token "+token+" Row Number "+rowNum+" Column Number "+colNum+" Lexeme "+lexeme);
     }
-    
 }
