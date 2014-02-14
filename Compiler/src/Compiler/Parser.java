@@ -236,7 +236,7 @@ class Parser {
     }
     public void value_Parameter_Section()
     {
-        identifier_List();
+        identifier_List();                              //Rule 27
         if(Globals.token.equals("MP_COLON")){
             match(Globals.token, "MP_COLON");
         }else{
@@ -246,23 +246,115 @@ class Parser {
     }
     public void variable_Parameter_Section()
     {
-        
+        if(Globals.token.equals("MP_VAR")){             //Rule 28
+            match(Globals.token, "MP_VAR");
+            identifier_List();
+            if(Globals.token.equals("MP_COLON")){
+                match(Globals.token, "MP_COLON");
+            }else{
+                syntax_Error();
+            }
+            type();
+        }else{
+            syntax_Error();
+        }
     }
     public void statement_Part()
     {
-        
+        compound_Statement();
+    }
+    public void compound_Statement()
+    {
+        if(Globals.token.equals("MP_BEGIN")){           //Rule 30
+            match(Globals.token, "MP_BEGIN");
+            statement_Sequence();
+            if(Globals.token.equals("MP_END")){
+                match(Globals.token, "MP_END");
+            }else{
+                syntax_Error();
+            }
+        }else{
+            syntax_Error();
+        }
+    }
+    public void statement_Sequence()
+    {
+        statement();
+        statement_Tail();
+    }
+    public void statement_Tail()
+    {
+        if(Globals.token.equals("MP_SCOLON")){      //Rule 32
+            match(Globals.token, "MP_SCOLON");
+            statement();
+            statement_Tail();
+        }else if(Globals.token.equals("MP_END")){   //Rule 33
+            //epsilon
+        }else{
+            syntax_Error();
+        }
     }
     public void statement()
     {
-        
+        if(Globals.token.equals("MP_END") || Globals.token.equals("MP_SCOLON")){            //Rule 34
+            empty_Statement();
+        }else if(Globals.token.equals("MP_BEGIN")){                                         //Rule 35
+            compound_Statement();
+        }else if(Globals.token.equals("MP_READ")){                                          //Rule 36
+            read_Statement();
+        }else if(Globals.token.equals("MP_WRITE") || Globals.token.equals("MP_WRITELN")){   //Rule 37
+            write_Statement();
+        }else if(Globals.token.equals("MP_IDENTIFIER")){                                    //Rule 38
+            assignment_Statement();
+        }else if(Globals.token.equals("MP_IF")){                                            //Rule 39
+            if_Statement();
+        }else if(Globals.token.equals("MP_WHILE")){                                         //Rule 40
+            while_Statement();
+        }else if(Globals.token.equals("MP_REPEAT")){                                        //Rule 41
+            repeat_Statement();
+        }else if(Globals.token.equals("MP_FOR")){                                           //Rule 42
+            for_Statement();
+        /*
+         * 
+         * NOT SURE HOW TO HANDLE AMBIGUITY
+         * RULE 38 AND 43 BOTH GO TO IDENTIFIER
+         * 
+         *
+        }else if(Globals.token.equals("MP_IDENTIFIER")){                                    //Rule 43
+            procedure_Statement();
+            * 
+            */
+        }else{
+            syntax_Error();
+        }
     }
     public void empty_Statement()
     {
-        
+        if(Globals.token.equals("MP_END") || Globals.token.equals("MP_SCOLON")){            //Rule 44
+            //epsilon
+        }else{
+            syntax_Error();
+        }
     }
     public void read_Statement()
     {
-        
+        if(Globals.token.equals("MP_READ")){
+            match(Globals.token, "MP_READ");
+            if(Globals.token.equals("MP_LPAREN")){
+                match(Globals.token, "MP_LPAREN");
+            }else{
+                syntax_Error();
+            }
+            read_Parameter();
+            read_Parameter_Tail();
+            if(Globals.token.equals("MP_RPAREN")){
+                match(Globals.token, "MP_RPAREN");
+            }else{
+                syntax_Error();
+            }
+        }else{
+            syntax_Error();
+        }
     }
     public void read_Parameter_Tail()
     {

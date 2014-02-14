@@ -1,1 +1,1 @@
-program Hello ; . EOF 
+program Hello; begin end . EOF 
