@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Character.isLetterOrDigit;
 
 /**
  *
@@ -54,7 +55,7 @@ class ReservedWords {
             r = buffer.read();
             column++;
             ch = (char) r;
-            if(ch != ' ')
+            if(Character.isLetterOrDigit(ch) == true || ch == '_')
             {
                 tempLex = tempLex+ch;
                 lexeme = lexeme+ch;

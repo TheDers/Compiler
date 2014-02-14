@@ -86,8 +86,14 @@ public class mp
                            isSymbol = true;
                            break;
                        case '\'':
-                           isSymbol = true;
-                           break;
+                           if (stringStart == true)
+                           {
+                               string = string + '\'';
+                               stringStart = false;
+                           }else 
+                           {
+                               stringStart = true;
+                           }
                        case '{':
                            commentStart = true;
                            commentStartRow = rowNum;
@@ -397,12 +403,16 @@ public class mp
             if (stringStart == true)
             {
                     System.out.println("MP_RUN_STRING"+ string);
+                    String token = "MP_RUN_STRING";
+                    tokenList.add(token);
                     string = "";
                     stringStart = false;
 
             }else 
             {
                     System.out.println(string);
+                    String token = "MP_STRING";
+                    tokenList.add(token);
                     string = "";
                     stringStart = false;
 

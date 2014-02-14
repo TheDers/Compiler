@@ -206,6 +206,7 @@ class Parser {
                 match(Globals.token, "MP_RPAREN");
             }else{
                 syntax_Error();
+                
             }
         }else if(Globals.token.equals("MP_BEGIN") || Globals.token.equals("MP_BOOLEAN") || Globals.token.equals("MP_FLOAT") || Globals.token.equals("MP_FUNCTION") || Globals.token.equals("MP_INTEGER") || Globals.token.equals("MP_PROCEDURE") || Globals.token.equals("MP_STRING")){
             //Rule 22
@@ -224,6 +225,7 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void formal_Parameter_Section()
@@ -234,6 +236,7 @@ class Parser {
             variable_Parameter_Section();
         }else{
             syntax_Error();
+            
         }
     }
     public void value_Parameter_Section()
@@ -347,6 +350,7 @@ class Parser {
             }else{
                 syntax_Error();
             }
+            
             read_Parameter();
             read_Parameter_Tail();
             if(Globals.token.equals("MP_RPAREN")){
@@ -356,6 +360,7 @@ class Parser {
             }
         }else{
             syntax_Error();
+
         }
     }
     public void read_Parameter_Tail()
@@ -368,6 +373,7 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void read_Parameter()
@@ -382,7 +388,9 @@ class Parser {
                 match(Globals.token, "MP_LPAREN");
             }else{
                 syntax_Error();
+                
             }
+            
             write_Parameter();
             write_Parameter_Tail();
             if(Globals.token.equals("MP_RPAREN")){
@@ -403,6 +411,7 @@ class Parser {
                 match(Globals.token, "MP_RPAREN");
             }else{
                 syntax_Error();
+                
             }
         }
     }
@@ -416,6 +425,7 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void write_Parameter()
@@ -430,6 +440,21 @@ class Parser {
          * 
          * 
          */
+        if (Globals.token.equals("MP_IDENTIFIER"))
+        {
+            variable_Identifier();
+            if (Globals.token.equals("MP_ASSIGN"))
+            {
+                match(Globals.token, "MP_ASSIGN");
+            }else 
+            {
+                syntax_Error();
+            }
+            expression();
+        }else 
+        {
+            syntax_Error();
+        }
     }
     public void if_Statement()
     {
@@ -548,12 +573,14 @@ class Parser {
                 match(Globals.token, "MP_RPAREN");
             }else{
                 syntax_Error();
+                
             }
         }else if(Globals.token.equals("MP_AND") || Globals.token.equals("MP_DIV") || Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_ELSE") || Globals.token.equals("MP_END") || Globals.token.equals("MP_MOD") || Globals.token.equals("MP_OR") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_FLOAT_DIVIDE") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON") || Globals.token.equals("MP_TIMES")){
             //Rule 69
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void actual_Parameter_Tail()
@@ -566,6 +593,7 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void actual_Parameter()
@@ -640,6 +668,7 @@ class Parser {
     }
     public void simple_Expression()
     {
+        
         optional_Sign();                //Rule 82
         term();
         term_Tail();
@@ -655,19 +684,22 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void optional_Sign()
     {
         if(Globals.token.equals("MP_PLUS")){            //Rule 85
             match(Globals.token, "MP_PLUS");
+            
         }else if(Globals.token.equals("MP_MINUS")){     //Rule 86
             match(Globals.token, "MP_MINUS");
-        }else if(Globals.token.equals("MP_FALSE") || Globals.token.equals("MP_NOT") || Globals.token.equals("MP_TRUE") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_INTEGER_LIT") || Globals.token.equals("MP_FLOAT_LIT") || Globals.token.equals("MP_STRING_LIT") || Globals.token.equals("MP_LPAREN")){
+        }else if(Globals.token.equals("MP_FALSE") || Globals.token.equals("MP_NOT") || Globals.token.equals("MP_TRUE") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_INTEGER_LIT") || Globals.token.equals("MP_FLOAT_LIT") || Globals.token.equals("MP_STRING_LIT") || Globals.token.equals("MP_RPAREN")){
             //Rules 87
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void adding_Operator()
@@ -699,6 +731,7 @@ class Parser {
             //epsilon
         }else{
             syntax_Error();
+            
         }
     }
     public void multiplying_Operator()
@@ -735,8 +768,13 @@ class Parser {
             match(Globals.token, "MP_LPAREN");
         }else if(Globals.token.equals ("MP_IDENTIFIER")){   //Rule 106
             match(Globals.token, "MP_IDENTIFIER");
-        }else{
+        }else if (Globals.token.equals ("MP_RPAREN")){
+            //
+                }
+        else{
             syntax_Error();
+                                        System.out.println("I BROKE NIGGA");
+
         }
     }
     public void program_Identifier()
@@ -745,13 +783,19 @@ class Parser {
             match(Globals.token, "MP_IDENTIFIER");
         }else{
             syntax_Error();
+            
         }        
     }
     public void variable_Identifier()
     {
         if(Globals.token.equals("MP_IDENTIFIER")){          //Rule 108
             match(Globals.token, "MP_IDENTIFIER");
-        }else{
+        }
+        else if (Globals.token.equals("MP_RPAREN"))
+        {
+            //
+        }
+        else{
             syntax_Error();
         }
     }
@@ -815,6 +859,7 @@ class Parser {
         throw new SyntaxErrorException();
         }catch (SyntaxErrorException e){
             System.out.println("Syntax Error");
+            System.out.println(Globals.token);
         }
     }
     public void match(String token, String realToken)
