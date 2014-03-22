@@ -24,7 +24,19 @@ public class mp
         {
             String filename = args[0];
             File file = new File(filename);
-            dispatcher(file);
+            //dispatcher(file);
+            SymbolTable st = new SymbolTable();
+            st.createSTable("Mary", null);
+            st.tableHeader();
+            st.tableParent();
+            st.insert("A", "variable", "local", "integer");
+            st.insert("B", "procedure", "in", "character");
+            System.out.println(st.lookup("A"));
+            System.out.println(st.lookup("B"));
+            System.out.println(st.lookup("C"));
+            st.createSTable("Jim", "Mary");
+            st.tableHeader();
+            st.tableParent();
         }
     public static void dispatcher(File file)throws IOException
         {
