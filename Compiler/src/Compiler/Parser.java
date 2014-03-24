@@ -11,20 +11,25 @@ import java.util.ArrayList;
  *
  * @author DasRobotos
  */
-class Parser {
+public class Parser {
     
     ArrayList<String> tList;
+    ArrayList<String> lList;
     boolean syntax_error = false;
+    SymbolTable st = new SymbolTable();
+    ArrayList<String> varList = new ArrayList<String>();
 
-    Parser(ArrayList<String> tokenList) {
+    public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList) {
         tList= tokenList;
-        parserMethod(tList, Globals.tokenCounter);
+        lList = lexemeList;
+        parserMethod(tList, lList, Globals.tokenCounter);
 
     }
 
-    private void parserMethod(ArrayList tokenList, int tokenCounter) {
+    private void parserMethod(ArrayList tokenList, ArrayList lexemeList, int tokenCounter) {
         //String token = nextToken(tokenList, tokenCounter);
         Globals.token = tokenList.get(tokenCounter).toString();
+        Globals.lexeme = lexemeList.get(tokenCounter).toString();
         system_Goal();
 
 
@@ -32,8 +37,10 @@ class Parser {
 
     private void nextToken(ArrayList tokenList, int tokenCounter) {
         String nextToken = tokenList.get(tokenCounter + 1).toString();
+        String nextLexeme = lList.get(tokenCounter + 1).toString();
         Globals.tokenCounter++;
         Globals.token = nextToken;
+        Globals.lexeme = nextLexeme;
     }
 
     public void system_Goal() {
@@ -56,6 +63,8 @@ class Parser {
         }else{
             syntax_Error();
         }
+        st.printSTable();
+        st.destroySTable();                                 //destroy main symbol table
     }
 
     public void program_Heading() {
@@ -64,6 +73,7 @@ class Parser {
         }else{
             syntax_Error();
         }
+        st.createSTable(Globals.lexeme, 0);                  //Create main Symbol Table
         program_Identifier();
     }
 
@@ -115,6 +125,10 @@ class Parser {
         }else{
             syntax_Error();
         }
+        for(int x=0; x < varList.size(); x ++){
+            st.insert(varList.get(x), Globals.token, "local", null);
+        }
+        varList.clear();
         type();
     }
     public void type()
@@ -825,6 +839,7 @@ class Parser {
     }
     public void identifier_List()
     {
+        varList.add(Globals.lexeme);
         if(Globals.token.equals("MP_IDENTIFIER")){          //Rule 113
             match(Globals.token, "MP_IDENTIFIER");
             identifier_Tail();
@@ -836,6 +851,7 @@ class Parser {
     {
         if(Globals.token.equals("MP_COMMA")){               //Rule 114
             match(Globals.token, "MP_COMMA");
+            varList.add(Globals.lexeme);
             if(Globals.token.equals("MP_IDENTIFIER")){
                 match(Globals.token, "MP_IDENTIFIER");
             }else{

@@ -1,6 +1,7 @@
 Program Lesson1_Program3;
-Var       
+Var    
     Num1, Num2, Sum : Integer;
+    Num3, Num4 : Boolean;
 
 Begin {no semicolon}
  Write(); 

@@ -24,23 +24,21 @@ public class mp
         {
             String filename = args[0];
             File file = new File(filename);
-            //dispatcher(file);
-            SymbolTable st = new SymbolTable();
-            st.createSTable("Mary", null);
-            st.tableHeader();
-            st.tableParent();
-            st.insert("A", "variable", "local", "integer");
-            st.insert("B", "procedure", "in", "character");
-            System.out.println(st.lookup("A"));
-            System.out.println(st.lookup("B"));
-            System.out.println(st.lookup("C"));
-            st.createSTable("Jim", "Mary");
-            st.tableHeader();
-            st.tableParent();
+            dispatcher(file);
+            //SymbolTable st = new SymbolTable();
+            //st.createSTable("Apples", 0);
+            //st.insert("A", "variable", "local", "integer");
+            //st.insert("B", "procedure", "in", "character");
+            //st.createSTable("Bananas", 1);
+            //st.insert("C", "variable", "local", "boolean");
+            //st.createSTable("Cherry", 2);
+            //st.insert("D", "variable", "private", "String");
+            //st.printSTable();
         }
     public static void dispatcher(File file)throws IOException
         {
             ArrayList<String> tokenList = new ArrayList<String>();
+            ArrayList<String> lexemeList = new ArrayList<String>();
             BufferedReader buffer = new BufferedReader(new FileReader(file));
             int c = 0;
             int rowNum = 0;
@@ -349,6 +347,7 @@ public class mp
                     colNum = tokenColNum;
                     String lexeme = symbol.getLexeme();
                     tokenList.add(token);
+                    lexemeList.add(lexeme);
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
                 }
                 if (isLetterDigit == true && commentStart == false && stringStart == false)
@@ -364,6 +363,7 @@ public class mp
                     colNum = tokenColNum;
                     String lexeme = letterDigit.getLexeme();
                     tokenList.add(token);
+                    lexemeList.add(lexeme);
                     printDigit(token, tokenRowNum, colPrint, lexeme);
 
                 }
@@ -384,7 +384,9 @@ public class mp
                     colNum = tokenColNum;
                     String lexeme = rWord.getLexeme();
                     tokenList.add(token);
+                    lexemeList.add(lexeme);
                     printReservedWord(token, tokenRowNum, tokenColNum, lexeme);
+                    //System.out.println(lexeme);
                 }
                 if (commentStart == true)
                 {
@@ -417,6 +419,7 @@ public class mp
                     System.out.println("MP_RUN_STRING"+ string);
                     String token = "MP_RUN_STRING";
                     tokenList.add(token);
+                    lexemeList.add(token);
                     string = "";
                     stringStart = false;
 
@@ -425,13 +428,14 @@ public class mp
                     System.out.println(string);
                     String token = "MP_STRING";
                     tokenList.add(token);
+                    lexemeList.add(token);
                     string = "";
                     stringStart = false;
 
 
             }
            System.out.println(tokenList);
-           Parser parse = new Parser(tokenList);
+           Parser parse = new Parser(tokenList, lexemeList);
            
         }
     public static void printSymbol(String token, int rowNum, int colNum, String lexeme)

@@ -11,4 +11,5 @@ package Compiler;
 public class Globals {
     public static int tokenCounter=0;
     public static String token;
+    public static String lexeme;
 }
