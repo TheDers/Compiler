@@ -32,18 +32,20 @@ public class SymbolTable {
         String classType;   //variable, procedure, function, etc.
         String scope;       //in, local, etc.
         String varType;     //integer, boolean, etc.
+        int offset;
         TableElement next;
-        TableElement(String vName, String varType, String scope, String cType, TableElement next){
+        TableElement(String vName, String varType, String scope, String cType, TableElement next, int offset){
             this.varName = vName;
             this.classType = cType;
             this.scope = scope;
             this.varType = varType;
             this.next = next;
+            this.offset = offset;
         }
     }
     
-    public void insert(String varName, String varType ,String scope, String classType){
-        element = new TableElement(varName, varType, scope, classType, null);       //create new table element
+    public void insert(String varName, String varType ,String scope, String classType, int offset){
+        element = new TableElement(varName, varType, scope, classType, null, offset);       //create new table element
         if(table.next == null){                                                     //If the symbol table is added, insert the element as the first element of the table
             table.next = element;
         }else {                                                                     //If the symbol table is not empty, find the end of the list and then add on the new element
@@ -59,13 +61,33 @@ public class SymbolTable {
     public void lookup(String varName){
         for(TableElement x = table.next; x != null; x = x.next){         //loop as long as there are elements in the S Table
             if(varName.equals(x.varName)){  //matcher
-                System.out.println(x.varName + " " + x.varType + " " + x.scope + " " + x.classType);
+                System.out.println(x.varName + " " + x.varType + " " + x.scope + " " + x.classType + " " + x.offset);
                 printed = true;
             }
         }
         if(printed == false){       //if not found, print error message
             System.out.println("Entry Not Found");
         }
+    }
+    
+    public int lookupOffset(String varName){
+        for(TableElement x = table.next; x != null; x = x.next){         //loop as long as there are elements in the S Table
+            if(varName.equals(x.varName)){  //matcher
+                return x.offset;
+            }
+        }
+        System.out.println("Record Not Found");
+        return 999;
+    }
+    
+    public int lookupNestingLevel(String varName){
+        for(TableElement x = table.next; x != null; x = x.next){         //loop as long as there are elements in the S Table
+            if(varName.equals(x.varName)){  //matcher
+                return table.nestingLevel;
+            }
+        }
+        System.out.println("Record Not Found");
+        return 999;
     }
     
     public void createSTable(String name, int nestingLevel){
@@ -87,7 +109,7 @@ public class SymbolTable {
                 System.out.println(table.tableName + " " + table.nestingLevel);
                 currElement = table.next;
                 while(currElement != null){
-                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType);
+                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType + " " + currElement.offset);
                     currElement = currElement.next;
                 }
                 table = table.tableParent;
@@ -95,7 +117,7 @@ public class SymbolTable {
             System.out.println(table.tableName + " " + table.nestingLevel);
                 currElement = table.next;
                 while(currElement != null){
-                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType);
+                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType + " " + currElement.offset);
                     currElement = currElement.next;
                 }
         }

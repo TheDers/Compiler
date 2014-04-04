@@ -18,7 +18,9 @@ public class Parser {
     boolean syntax_error = false;
     SymbolTable st = new SymbolTable();
     ArrayList<String> varList = new ArrayList<String>();
-
+    public int offset = 0;
+    public int nestingLevel;
+    
     public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList) {
         tList= tokenList;
         lList = lexemeList;
@@ -126,7 +128,8 @@ public class Parser {
             syntax_Error();
         }
         for(int x=0; x < varList.size(); x ++){
-            st.insert(varList.get(x), Globals.token, "local", null);
+            st.insert(varList.get(x), Globals.token, "local", null, offset);
+            offset++;
         }
         varList.clear();
         type();
@@ -392,7 +395,10 @@ public class Parser {
     }
     public void read_Parameter()
     {
+        offset = st.lookupOffset(Globals.lexeme);
+        nestingLevel = st.lookupNestingLevel(Globals.lexeme);
         variable_Identifier();
+        //Analyzer.generateRead();
     }
     public void write_Statement()
     {
@@ -444,7 +450,11 @@ public class Parser {
     }
     public void write_Parameter()
     {
+        //System.out.println(Globals.lexeme);
+        offset = st.lookupOffset(Globals.lexeme);
+        nestingLevel = st.lookupNestingLevel(Globals.lexeme);
         ordinal_Expression();
+        Analyzer.generateWrite(offset, nestingLevel);
     }
     public void assignment_Statement()
     {
