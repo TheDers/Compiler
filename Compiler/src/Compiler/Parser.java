@@ -397,8 +397,15 @@ public class Parser {
     {
         offset = st.lookupOffset(Globals.lexeme);
         nestingLevel = st.lookupNestingLevel(Globals.lexeme);
+        String varType = st.lookupVarType(Globals.lexeme);
         variable_Identifier();
-        //Analyzer.generateRead();
+        if(varType.equals("MP_INTEGER")){
+            Analyzer.generateRead(offset, nestingLevel);
+        }else if(varType.equals("MP_FLOAT")){
+            Analyzer.generateReadF(offset, nestingLevel);
+        }else if(varType.equals("MP_STRING")){
+            Analyzer.generateReadS(offset, nestingLevel);
+        }
     }
     public void write_Statement()
     {
@@ -692,7 +699,6 @@ public class Parser {
     }
     public void simple_Expression()
     {
-        
         optional_Sign();                //Rule 82
         term();
         term_Tail();
@@ -797,7 +803,7 @@ public class Parser {
                 }
         else{
             syntax_Error();
-                                        System.out.println("I BROKE NIGGA");
+                                        System.out.println("ERROR");
 
         }
     }

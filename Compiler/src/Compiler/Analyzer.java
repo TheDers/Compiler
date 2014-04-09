@@ -22,7 +22,15 @@ public class Analyzer {
         System.out.println("PUSH " + value);
     }
     
-    static void generateRead(){
-        
+    static void generateRead(int offset, int nestingLevel){
+        System.out.println("RD " + offset + "(d" + nestingLevel + ")");
+    }
+    
+    static void generateReadF(int offset, int nestingLevel){
+        System.out.println("RDF " + offset + "(d" + nestingLevel + ")");
+    }
+    
+    static void generateReadS(int offset, int nestingLevel){
+        System.out.println("RDS " + offset + "(d" + nestingLevel + ")");
     }
 }

@@ -59,8 +59,8 @@ public class SymbolTable {
         
     
     public void lookup(String varName){
-        for(TableElement x = table.next; x != null; x = x.next){         //loop as long as there are elements in the S Table
-            if(varName.equals(x.varName)){  //matcher
+        for(TableElement x = table.next; x != null; x = x.next){        //loop as long as there are elements in the S Table
+            if(varName.equals(x.varName)){                              //matcher
                 System.out.println(x.varName + " " + x.varType + " " + x.scope + " " + x.classType + " " + x.offset);
                 printed = true;
             }
@@ -68,6 +68,16 @@ public class SymbolTable {
         if(printed == false){       //if not found, print error message
             System.out.println("Entry Not Found");
         }
+    }
+    
+    public String lookupVarType(String varName){
+        for(TableElement x = table.next; x != null; x = x.next){         //loop as long as there are elements in the S Table
+            if(varName.equals(x.varName)){  //matcher
+                return x.varType;
+            }
+        }
+        System.out.println("Record Not Found");
+        return null;
     }
     
     public int lookupOffset(String varName){
