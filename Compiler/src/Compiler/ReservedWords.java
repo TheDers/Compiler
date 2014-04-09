@@ -69,57 +69,57 @@ class ReservedWords {
         switch (tempLex)
         {
             case "a":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "b":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "c":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "d":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "e":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "f":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "g":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "h":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "i":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "j":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "k":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "l":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "m":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "n":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "o":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "p":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "q":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "r":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "s":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "t":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "u":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "v":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "w":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "x":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "y":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "z":
-                return "Letter";
+                return "MP_IDENTIFIER";
             case "and":
                 return andToken();
             case "begin":
