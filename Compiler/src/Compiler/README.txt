@@ -10,5 +10,4 @@ Begin {no semicolon}
  Read(Num2);
  Sum := Num1 + Num2; {addition} 
  Writeln(Sum);
- Read();
 End.

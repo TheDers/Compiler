@@ -109,7 +109,7 @@ public class SymbolTable {
                 System.out.println(table.tableName + " " + table.nestingLevel);
                 currElement = table.next;
                 while(currElement != null){
-                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType + " " + currElement.offset);
+                    System.out.println(currElement.varName + "\t" + currElement.varType + "\t" + currElement.scope + "\t" + currElement.classType + "\t" + currElement.offset);
                     currElement = currElement.next;
                 }
                 table = table.tableParent;
@@ -117,7 +117,7 @@ public class SymbolTable {
             System.out.println(table.tableName + " " + table.nestingLevel);
                 currElement = table.next;
                 while(currElement != null){
-                    System.out.println(currElement.varName + " " + currElement.varType + " " + currElement.scope + " " + currElement.classType + " " + currElement.offset);
+                    System.out.println(currElement.varName + "\t" + currElement.varType + "\t" + currElement.scope + "\t" + currElement.classType + "\t" + currElement.offset);
                     currElement = currElement.next;
                 }
         }
