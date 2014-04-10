@@ -14,12 +14,20 @@ public class Analyzer {
         
     }
     
-    static void generateWrite(int offset, int nestingLevel){
-        System.out.println("WRT " + offset + "(d" + nestingLevel + ")");
+    static void generateWriteS(){
+        System.out.println("WRTS");
     }
     
     static void generatePush(int value){
         System.out.println("PUSH " + value);
+    }
+    
+    static void generatePushIdent(int offset, int nestingLevel){
+        System.out.println("PUSH " + offset + "(d" + nestingLevel + ")");
+    }
+    
+    static void generatePop(int offset, int nestingLevel){
+        System.out.println("POP " + offset + "(d" + nestingLevel + ")");
     }
     
     static void generateRead(int offset, int nestingLevel){
@@ -32,5 +40,29 @@ public class Analyzer {
     
     static void generateReadS(int offset, int nestingLevel){
         System.out.println("RDS " + offset + "(d" + nestingLevel + ")");
+    }
+    
+    static void generateAdd(){
+        System.out.println("ADDS");
+    }
+    
+    static void generateSubtract(){
+        System.out.println("SUBS");
+    }
+    
+    static void generateDivide(){
+        System.out.println("DIVS");
+    }
+    
+    static void generateMultiply(){
+        System.out.println("MULS");
+    }
+    
+    static void generateMod(){
+        System.out.println("MODS");
+    }
+    
+    static void generateDivideF(){
+        System.out.println("DIVSF");
     }
 }

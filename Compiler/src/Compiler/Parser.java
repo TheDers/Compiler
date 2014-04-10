@@ -458,10 +458,8 @@ public class Parser {
     public void write_Parameter()
     {
         //System.out.println(Globals.lexeme);
-        offset = st.lookupOffset(Globals.lexeme);
-        nestingLevel = st.lookupNestingLevel(Globals.lexeme);
         ordinal_Expression();
-        Analyzer.generateWrite(offset, nestingLevel);
+        Analyzer.generateWriteS();
     }
     public void assignment_Statement()
     {
@@ -473,6 +471,7 @@ public class Parser {
          */
         if (Globals.token.equals("MP_IDENTIFIER"))
         {
+            String popLocation = Globals.lexeme;
             variable_Identifier();
             if (Globals.token.equals("MP_ASSIGN"))
             {
@@ -482,6 +481,7 @@ public class Parser {
                 syntax_Error();
             }
             expression();
+            Analyzer.generatePop(st.lookupOffset(popLocation), st.lookupNestingLevel(popLocation));
         }else 
         {
             syntax_Error();
@@ -706,8 +706,18 @@ public class Parser {
     public void term_Tail()
     {
         if(Globals.token.equals("MP_OR") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS")){   //Rule 83
+            String addOp = Globals.token;
             adding_Operator();
             term();
+            if(addOp.equals("MP_MINUS")){
+                Analyzer.generateSubtract();
+            }else if(addOp.equals("MP_PLUS")){
+                Analyzer.generateAdd();
+            }else if(addOp.equals("MP_OR")){
+                //whatever MP_OR does
+            }else{
+                syntax_Error(); //This should never happen
+            }
             term_Tail();
         }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON")){
             //Rule 84
@@ -753,8 +763,22 @@ public class Parser {
     {
         if(Globals.token.equals("MP_AND") || Globals.token.equals("MP_DIV") || Globals.token.equals("MP_MOD") || Globals.token.equals("MP_FLOAT_DIVIDE") || Globals.token.equals("MP_TIMES")){
             //Rule 92
+            String mulOp = Globals.token;
             multiplying_Operator();
             factor();
+            if(mulOp.equals("MP_AND")){
+                //do whatever MP_AND does
+            }else if(mulOp.equals("MP_DIV")){
+                Analyzer.generateDivide();
+            }else if(mulOp.equals("MP_TIMES")){
+                Analyzer.generateMultiply();
+            }else if(mulOp.equals("MP_MOD")){
+                Analyzer.generateMod();
+            }else if(mulOp.equals("MP_FLOAT_DIVIDE")){
+                Analyzer.generateDivideF();
+            }else{
+                syntax_Error(); //This should never happen
+            }
             factor_Tail();
         }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_OR") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON")){
             //Rule 93
@@ -783,6 +807,7 @@ public class Parser {
     public void factor()
     {
         if(Globals.token.equals("MP_INTEGER_LIT")){         //Rule 99
+            Analyzer.generatePush(Integer.parseInt(Globals.lexeme));
             match(Globals.token, "MP_INTEGER_LIT");
         }else if(Globals.token.equals("MP_FLOAT_LIT")){     //Rule 100
             match(Globals.token, "MP_FLOAT_LIT");
@@ -797,6 +822,7 @@ public class Parser {
         }else if(Globals.token.equals("MP_LPAREN")){        //Rule 105
             match(Globals.token, "MP_LPAREN");
         }else if(Globals.token.equals ("MP_IDENTIFIER")){   //Rule 106
+            Analyzer.generatePushIdent(st.lookupOffset(Globals.lexeme),st.lookupNestingLevel(Globals.lexeme));
             match(Globals.token, "MP_IDENTIFIER");
         }else if (Globals.token.equals ("MP_RPAREN")){
             //
