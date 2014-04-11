@@ -6,9 +6,11 @@ Var
 
 Begin {no semicolon}
  Write(a);
+ Write('a = ',a);
  Read(Num2);
  Read(Num3);
  Writeln(Num2);
- Sum := Num1 + Num2 * 3; {addition} 
+ a := 3.5 + "Taco";
+ Sum := Num1 + Num2 * 3.5 + Num3 * (4 + 3); {addition} 
  Writeln(Sum);
 End.

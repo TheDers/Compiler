@@ -90,7 +90,7 @@ public class letterDigits {
                                 return "ERROR";
                             }
                         } else {
-                            return "MP_FIXED_LIT";
+                            return "MP_FLOAT_LIT";      //MP_FIXED_LIT
                         }
                     } else {
                         return "ERROR";

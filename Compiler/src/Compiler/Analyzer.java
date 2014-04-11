@@ -25,6 +25,10 @@ public class Analyzer {
         System.out.println("PUSH " + value);
     }
     
+    static void generatePushS(String value){
+        System.out.println("PUSH " + value);
+    }
+    
     static void generatePushIdent(int offset, int nestingLevel){
         System.out.println("PUSH " + offset + "(d" + nestingLevel + ")");
     }
@@ -45,11 +49,18 @@ public class Analyzer {
         System.out.println("RDS " + offset + "(d" + nestingLevel + ")");
     }
     
-    static void generateAdd(){
-        System.out.println("ADDS");
+    static void generateAdd(String type1, String type2){
+        if(type1.equals(type2)){
+            System.out.println("ADDS");
+        }else if(type1.equals("MP_STRING_LIT") && !type2.equals("MP_STRING_LIT") || !type1.equals("MP_STRING_LIT") && type2.equals("MP_STRING_LIT")){
+            System.out.println("Syntax Error - Type Mismatch");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("ADDS");
+        }
     }
     
-    static void generateSubtract(){
+    static void generateSubtract(String type1, String type2){
         System.out.println("SUBS");
     }
     

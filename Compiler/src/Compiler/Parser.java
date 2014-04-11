@@ -20,6 +20,7 @@ public class Parser {
     ArrayList<String> varList = new ArrayList<String>();
     public int offset = 0;
     public int nestingLevel;
+    public String type1, type2;
     
     public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList) {
         tList= tokenList;
@@ -701,6 +702,7 @@ public class Parser {
     public void simple_Expression()
     {
         optional_Sign();                //Rule 82
+        type1 = Globals.token;
         term();
         term_Tail();
     }
@@ -709,11 +711,12 @@ public class Parser {
         if(Globals.token.equals("MP_OR") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS")){   //Rule 83
             String addOp = Globals.token;
             adding_Operator();
+            type2 = Globals.token;
             term();
             if(addOp.equals("MP_MINUS")){
-                Analyzer.generateSubtract();
+                Analyzer.generateSubtract(type1, type2);
             }else if(addOp.equals("MP_PLUS")){
-                Analyzer.generateAdd();
+                Analyzer.generateAdd(type1, type2);
             }else if(addOp.equals("MP_OR")){
                 //whatever MP_OR does
             }else{
@@ -814,6 +817,7 @@ public class Parser {
             Analyzer.generatePushF(Float.parseFloat(Globals.lexeme));
             match(Globals.token, "MP_FLOAT_LIT");
         }else if(Globals.token.equals("MP_STRING_LIT")){    //Rule 101
+            Analyzer.generatePushS(Globals.lexeme);
             match(Globals.token, "MP_STRING_LIT");
         }else if(Globals.token.equals("MP_TRUE")){          //Rule 102
             match(Globals.token, "MP_TRUE");
@@ -823,6 +827,8 @@ public class Parser {
             match(Globals.token, "MP_NOT");
         }else if(Globals.token.equals("MP_LPAREN")){        //Rule 105
             match(Globals.token, "MP_LPAREN");
+            expression();
+            match(Globals.token, "MP_RPAREN");
         }else if(Globals.token.equals ("MP_IDENTIFIER")){   //Rule 106
             Analyzer.generatePushIdent(st.lookupOffset(Globals.lexeme),st.lookupNestingLevel(Globals.lexeme));
             match(Globals.token, "MP_IDENTIFIER");
