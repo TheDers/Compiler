@@ -21,6 +21,9 @@ public class Analyzer {
     static void generatePush(int value){
         System.out.println("PUSH " + value);
     }
+    static void generatePushF(float value){
+        System.out.println("PUSH " + value);
+    }
     
     static void generatePushIdent(int offset, int nestingLevel){
         System.out.println("PUSH " + offset + "(d" + nestingLevel + ")");

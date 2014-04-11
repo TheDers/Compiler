@@ -44,12 +44,6 @@ public class mp
             int rowNum = 0;
             int colNum = 0;
             int colPrint = 0;
-            String comment = "";
-            boolean commentStart = false;
-            int commentStartRow = 0;
-            int commentStartCol = 0;
-            String string = "";
-            boolean stringStart = false;
             boolean isSymbol = false;
             boolean isReservedWord = false;
             boolean isLetterDigit = false;
@@ -83,35 +77,19 @@ public class mp
                            isSymbol = true;
                            break;
                        case '\"':
-                           if (stringStart == true)
-                           {
-                               string = string + "\"";
-                               stringStart = false;
-                           }else 
-                           {
-                               stringStart = true;
-                           }
+                           isSymbol = true;
                            break;
                        case '/':
                            isSymbol = true;
                            break;
                        case '\'':
-                           if (stringStart == true)
-                           {
-                               string = string + '\'';
-                               stringStart = false;
-                           }else 
-                           {
-                               stringStart = true;
-                           }
+                           isSymbol = true; 
+                           break;
                        case '{':
-                           commentStart = true;
-                           commentStartRow = rowNum;
-                           commentStartCol = colNum;
+                           isSymbol = true;
                            break;
                        case '}':
-                           comment = comment + "}";
-                           commentStart = false;
+                           isSymbol = true;
                            break;
                        case ';':
                            isSymbol = true;
@@ -334,7 +312,7 @@ public class mp
                             break;
                    }
                 colPrint = colNum;
-                if (isSymbol == true && commentStart == false && stringStart == false)
+                if (isSymbol == true)
                 {
                     Symbols symbol = new Symbols(file, rowNum, colNum, character);
                     String token = symbol.getToken();
@@ -346,11 +324,16 @@ public class mp
                     }
                     colNum = tokenColNum;
                     String lexeme = symbol.getLexeme();
-                    tokenList.add(token);
-                    lexemeList.add(lexeme);
+                    if (!token.equals("MP_COMMENT"))
+                    {
+                        tokenList.add(token);
+                        lexemeList.add(lexeme);
+                    }
                     printSymbol(token, tokenRowNum, colPrint, lexeme);
+
+
                 }
-                if (isLetterDigit == true && commentStart == false && stringStart == false)
+                if (isLetterDigit == true)
                 {
                     letterDigits letterDigit = new letterDigits(file, rowNum, colNum, character);
                     String token = letterDigit.getToken();
@@ -367,7 +350,7 @@ public class mp
                     printDigit(token, tokenRowNum, colPrint, lexeme);
 
                 }
-                if (isReservedWord == true && commentStart == false && stringStart == false)
+                if (isReservedWord == true)
                 {
                     ReservedWords rWord = new ReservedWords(file, rowNum, colNum, character);
                     String token = rWord.getToken();
@@ -388,55 +371,16 @@ public class mp
                     printReservedWord(token, tokenRowNum, tokenColNum, lexeme);
                     //System.out.println(lexeme);
                 }
-                if (commentStart == true)
-                {
-                comment = comment + character;
-                }
-                if (stringStart == true)
-                {
-                string = string + character;
-                }
                 
             isSymbol = false;
             isLetterDigit = false;
             isReservedWord = false;
             }
-            if (commentStart == true)
-            {
-                    System.out.println("MP_RUN_COMMENT, COMMENT START AT ROW "+commentStartRow+" COL "+commentStartCol);
-                    comment = "";
-                    commentStart = false;
-
-            }else 
-            {
-                    System.out.println(comment);
-                    comment = "";
-                    commentStart = false;
-
-            }
-            if (stringStart == true)
-            {
-                    System.out.println("MP_RUN_STRING"+ string);
-                    String token = "MP_RUN_STRING";
-                    tokenList.add(token);
-                    lexemeList.add(token);
-                    string = "";
-                    stringStart = false;
-
-            }else 
-            {
-                    System.out.println(string);
-                    String token = "MP_STRING";
-                    tokenList.add(token);
-                    lexemeList.add(token);
-                    string = "";
-                    stringStart = false;
-
-
-            }
-           System.out.println(tokenList);
-           Parser parse = new Parser(tokenList, lexemeList);
-           
+    String token = "";
+    tokenList.add(token);
+    lexemeList.add(token);
+    System.out.println(tokenList);
+    Parser parse = new Parser(tokenList, lexemeList);
         }
     public static void printSymbol(String token, int rowNum, int colNum, String lexeme)
     {

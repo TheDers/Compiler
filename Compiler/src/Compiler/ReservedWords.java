@@ -289,7 +289,7 @@ class ReservedWords {
     }
     public String stringToken()
     {
-        return "MP_STIRNG";
+        return "MP_STRING";
     }
     public String thenToken()
     {

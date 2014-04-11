@@ -147,6 +147,7 @@ public class Parser {
         }else{
             syntax_Error();
         }
+
     }
     public void procedure_And_Function_Declaration_Part()
     {
@@ -810,6 +811,7 @@ public class Parser {
             Analyzer.generatePush(Integer.parseInt(Globals.lexeme));
             match(Globals.token, "MP_INTEGER_LIT");
         }else if(Globals.token.equals("MP_FLOAT_LIT")){     //Rule 100
+            Analyzer.generatePushF(Float.parseFloat(Globals.lexeme));
             match(Globals.token, "MP_FLOAT_LIT");
         }else if(Globals.token.equals("MP_STRING_LIT")){    //Rule 101
             match(Globals.token, "MP_STRING_LIT");

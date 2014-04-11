@@ -1,5 +1,7 @@
 package Compiler;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Anders
@@ -26,6 +28,7 @@ public class Symbols {
 	MP_TIMES          "*"
 	MP_COLON          ":"
         MP_FLOAT_DIVIDE   "/"
+        MP_STRING         '\"'
      * 
      */
     
@@ -53,6 +56,27 @@ public class Symbols {
             return Lparen();
         }else if(token == ')'){
             return Rparen();
+        }else if (token == '\"'){
+            try {
+                return String();
+            } catch (IOException e) {
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
+        }else if (token == '\''){
+            try {
+                return String();
+            } catch (IOException e) {
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
+        }else if (token == '{'){
+            try {
+                return Comment();
+            } catch (IOException e) {
+                System.out.println("General I/O exception: " + e.getMessage());
+                return "ERROR";
+            }
         }else if(token == '='){
             return Equal();
         }else if(token == '>'){
@@ -232,6 +256,63 @@ public class Symbols {
         column++;
         lexeme = "/";
         return "MP_FLOAT_DIVIDE";
+    }
+
+    public String String()throws IOException {
+        //Also includes Gequal
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+        
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<=column;j++){
+                    next_token = (char)buffer.read();
+                }
+        next_token = (char)buffer.read();
+        String text = "";
+        while (next_token != '\"' && next_token != '\'')
+            {
+                text = text+next_token;
+                column++;
+                next_token = (char)buffer.read();
+            }
+        if(next_token == '\"' || next_token == '\''){
+            column++;
+            column++;
+            lexeme = text;
+            return "MP_STRING_LIT";
+        }else
+        {
+            return "ERROR";
+        }
+    }
+        public String Comment()throws IOException {
+        //Also includes Gequal
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+        
+                for(int i = 0;i<row;i++){
+                    buffer.readLine();
+                }
+                for(int j = 0;j<=column;j++){
+                    next_token = (char)buffer.read();
+                }
+        next_token = (char)buffer.read();
+        String text = "";
+        while (next_token != '}')
+            {
+                text = text+next_token;
+                column++;
+                next_token = (char)buffer.read();
+            }
+        if(next_token == '}'){
+            column++;
+            column++;
+            lexeme = text;
+            return "MP_COMMENT";
+        }else
+        {
+            return "ERROR";
+        }
     }
 }
 
