@@ -210,6 +210,11 @@ public class Parser {
             match(Globals.token, "MP_FUNCTION");
             function_Identifier();
             optional_Formal_Parameter_List();
+            if(Globals.token.equals("MP_COLON")){
+                match(Globals.token, "MP_COLON");
+            }else{
+                syntax_Error();
+            }
             type();
         }else{
             syntax_Error();
@@ -638,29 +643,32 @@ public class Parser {
         simple_Expression();
         optional_Relational_Part();
     }
-    public void optional_Relational_Part()      //I went full potatoe on this method, can be condensed
+    public void optional_Relational_Part()      
     {
         if(Globals.token.equals("MP_EQUAL")){           //Rule 74
             relational_Operator();
             simple_Expression();
+            Analyzer.generateCompEq();
         }else if(Globals.token.equals("MP_GEQUAL")){    //Rule 74
             relational_Operator();
             simple_Expression();
+            Analyzer.generateCompGe();
         }else if(Globals.token.equals("MP_GTHAN")){     //Rule 74
             relational_Operator();
             simple_Expression();
+            Analyzer.generateCompGt();
         }else if(Globals.token.equals("MP_LEQUAL")){    //Rule 74
             relational_Operator();
             simple_Expression();
+            Analyzer.generateCompLe();
         }else if(Globals.token.equals("MP_LTHAN")){     //Rule 74
             relational_Operator();
             simple_Expression();
+            Analyzer.generateCompLt();
         }else if(Globals.token.equals("MP_NEQUAL")){    //Rule 74
             relational_Operator();
             simple_Expression();
-        }else if(Globals.token.equals("MP_GTHAN")){     //Rule 74
-            relational_Operator();
-            simple_Expression();
+            Analyzer.generateCompNe();
         }else if(Globals.token.equals("MP_DO")){        //Rule 75
             //epsilon
         }else if(Globals.token.equals("MP_DOWNTO")){    //Rule 75
@@ -720,10 +728,11 @@ public class Parser {
             }else if(addOp.equals("MP_OR")){
                 //whatever MP_OR does
             }else{
+                System.out.println("THIS SHOULDN'T HAPPEN");
                 syntax_Error(); //This should never happen
             }
             term_Tail();
-        }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON")){
+        }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON") || Globals.token.equals("MP_EQUAL") || Globals.token.equals("MP_LTHAN") || Globals.token.equals("MP_GTHAN") || Globals.token.equals("MP_LEQUAL") || Globals.token.equals("MP_GEQUAL") || Globals.token.equals("MP_NEQUAL")){
             //Rule 84
             //epsilon
         }else{
@@ -784,7 +793,7 @@ public class Parser {
                 syntax_Error(); //This should never happen
             }
             factor_Tail();
-        }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_OR") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON")){
+        }else if(Globals.token.equals("MP_DO") || Globals.token.equals("MP_DOWNTO") || Globals.token.equals("MP_END") || Globals.token.equals("MP_OR") || Globals.token.equals("MP_THEN") || Globals.token.equals("MP_TO") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_COMMA") || Globals.token.equals("MP_MINUS") || Globals.token.equals("MP_PLUS") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_SCOLON") || Globals.token.equals("MP_EQUAL") || Globals.token.equals("MP_LTHAN") || Globals.token.equals("MP_GTHAN") || Globals.token.equals("MP_LEQUAL") || Globals.token.equals("MP_GEQUAL") || Globals.token.equals("MP_NEQUAL")){
             //Rule 93
             //epsilon
         }else{

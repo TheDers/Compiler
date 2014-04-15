@@ -79,4 +79,28 @@ public class Analyzer {
     static void generateDivideF(){
         System.out.println("DIVSF");
     }
+    
+    static void generateCompEq(){
+        System.out.println("CMPEQS");
+    }
+    
+    static void generateCompGe(){
+        System.out.println("CMPGES");
+    }
+    
+    static void generateCompGt(){
+        System.out.println("CMPGTS");
+    }
+    
+    static void generateCompLe(){
+        System.out.println("CMPLES");
+    }
+    
+    static void generateCompLt(){
+        System.out.println("CMPLTS");
+    }
+    
+    static void generateCompNe(){
+        System.out.println("CMPNES");
+    }
 }

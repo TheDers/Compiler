@@ -42,7 +42,7 @@ public class letterDigits {
                 next_token = (char)buffer.read();
             //if (Character.isDigit(next_token)) {
                 if(next_token == ' '){
-                    return "digit";
+                    return "MP_INTEGER_LIT";
                 }
                 while (Character.isDigit(next_token)) {
                     lexeme = lexeme + next_token;
