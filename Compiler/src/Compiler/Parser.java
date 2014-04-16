@@ -54,6 +54,7 @@ public class Parser {
     }
 
     public void program() {
+        Analyzer.generateHeader();                          //Move the stack pointer to D0
         program_Heading();                                  //Rule 2
         if(Globals.token.equals("MP_SCOLON")){
             match(Globals.token, "MP_SCOLON");
@@ -66,6 +67,7 @@ public class Parser {
         }else{
             syntax_Error();
         }
+        Analyzer.generateFooter();
         st.printSTable();
         st.destroySTable();                                 //destroy main symbol table
     }
@@ -778,17 +780,18 @@ public class Parser {
             //Rule 92
             String mulOp = Globals.token;
             multiplying_Operator();
+            type2 = Globals.token;
             factor();
             if(mulOp.equals("MP_AND")){
                 //do whatever MP_AND does
             }else if(mulOp.equals("MP_DIV")){
-                Analyzer.generateDivide();
+                Analyzer.generateDivide(type1, type2);
             }else if(mulOp.equals("MP_TIMES")){
-                Analyzer.generateMultiply();
+                Analyzer.generateMultiply(type1, type2);
             }else if(mulOp.equals("MP_MOD")){
-                Analyzer.generateMod();
+                Analyzer.generateMod(type1, type2);
             }else if(mulOp.equals("MP_FLOAT_DIVIDE")){
-                Analyzer.generateDivideF();
+                Analyzer.generateDivideF(type1, type2);
             }else{
                 syntax_Error(); //This should never happen
             }

@@ -6,6 +6,9 @@ Var
     bool : Boolean;
 
 Begin {no semicolon}
- bool := Num1 * Num2 <> Num1 * Sum;
- write(bool);
+ Num1 := Num2 - Sum;
+ Num1 := Num2 / Sum;
+ Num1 := Num2 * Sum;
+ Num1 := Num2 + bool;
+ Num1 := Num2 mod Sum;
 End.

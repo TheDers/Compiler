@@ -14,6 +14,14 @@ public class Analyzer {
         
     }
     
+    static void generateHeader(){
+        System.out.println("MOV SP D0");
+    }
+    
+    static void generateFooter(){
+        System.out.println("HLT");
+    }
+    
     static void generateWriteS(){
         System.out.println("WRTS");
     }
@@ -52,32 +60,67 @@ public class Analyzer {
     static void generateAdd(String type1, String type2){
         if(type1.equals(type2)){
             System.out.println("ADDS");
-        }else if(type1.equals("MP_STRING_LIT") && !type2.equals("MP_STRING_LIT") || !type1.equals("MP_STRING_LIT") && type2.equals("MP_STRING_LIT")){
-            System.out.println("Syntax Error - Type Mismatch");
         }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
             System.out.println("CASTSI");
             System.out.println("ADDS");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
         }
     }
     
     static void generateSubtract(String type1, String type2){
-        System.out.println("SUBS");
+        if(type1.equals(type2)){
+            System.out.println("SUBS");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("SUBS");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
+        }
     }
     
-    static void generateDivide(){
-        System.out.println("DIVS");
+    static void generateDivide(String type1, String type2){
+        if(type1.equals(type2)){
+            System.out.println("DIVS");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("DIVS");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
+        }
     }
     
-    static void generateMultiply(){
-        System.out.println("MULS");
+    static void generateMultiply(String type1, String type2){
+        if(type1.equals(type2)){
+            System.out.println("MULS");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("MULS");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
+        }
     }
     
-    static void generateMod(){
-        System.out.println("MODS");
+    static void generateMod(String type1, String type2){
+        if(type1.equals(type2)){
+            System.out.println("MODS");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("MODS");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
+        }
     }
     
-    static void generateDivideF(){
-        System.out.println("DIVSF");
+    static void generateDivideF(String type1, String type2){
+        if(type1.equals(type2)){
+            System.out.println("DIVSF");
+        }else if(type1.equals("MP_FLOAT") && type2.equals("MP_INTEGER")){
+            System.out.println("CASTSI");
+            System.out.println("DIVSF");
+        }else{
+            System.out.println("Syntax Error - Type Mismatch");
+        }
     }
     
     static void generateCompEq(){
