@@ -6,9 +6,5 @@ Var
     bool : Boolean;
 
 Begin {no semicolon}
- Num1 := Num2 - Sum;
- Num1 := Num2 / Sum;
- Num1 := Num2 * Sum;
- Num1 := Num2 + bool;
- Num1 := Num2 mod Sum;
+a := Num1 + 3 * (3 + 2);
 End.
