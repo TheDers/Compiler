@@ -20,7 +20,7 @@ public class Parser {
     ArrayList<String> varList = new ArrayList<String>();
     public int offset = 0;
     public int nestingLevel;
-    public String type1, type2;
+    public String type1, type2, type1temp, type2temp, type1type, type2type;
     
     public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList) {
         tList= tokenList;
@@ -713,6 +713,12 @@ public class Parser {
     {
         optional_Sign();                //Rule 82
         type1 = Globals.token;
+        if(type1.equals("MP_IDENTIFIER")){
+            type1temp = Globals.lexeme;
+            type1type = st.lookupVarType(type1temp);
+        }else{
+            type1type = Globals.token;
+        }
         term();
         term_Tail();
     }
@@ -722,11 +728,17 @@ public class Parser {
             String addOp = Globals.token;
             adding_Operator();
             type2 = Globals.token;
+            if(type2.equals("MP_IDENTIFIER")){
+                type2temp = Globals.lexeme;
+                type2type = st.lookupVarType(type2temp);
+            }else{
+                type2type = Globals.token;
+            }
             term();
             if(addOp.equals("MP_MINUS")){
-                Analyzer.generateSubtract(type1, type2);
+                Analyzer.generateSubtract(type1type, type2type);
             }else if(addOp.equals("MP_PLUS")){
-                Analyzer.generateAdd(type1, type2);
+                Analyzer.generateAdd(type1type, type2type);
             }else if(addOp.equals("MP_OR")){
                 //whatever MP_OR does
             }else{
@@ -781,17 +793,23 @@ public class Parser {
             String mulOp = Globals.token;
             multiplying_Operator();
             type2 = Globals.token;
+            if(type2.equals("MP_IDENTIFIER")){
+                type2temp = Globals.lexeme;
+                type2type = st.lookupVarType(type2temp);
+            }else{
+                type2type = Globals.token;
+            }
             factor();
             if(mulOp.equals("MP_AND")){
                 //do whatever MP_AND does
             }else if(mulOp.equals("MP_DIV")){
-                Analyzer.generateDivide(type1, type2);
+                Analyzer.generateDivide(type1type, type2type);
             }else if(mulOp.equals("MP_TIMES")){
-                Analyzer.generateMultiply(type1, type2);
+                Analyzer.generateMultiply(type1type, type2type);
             }else if(mulOp.equals("MP_MOD")){
-                Analyzer.generateMod(type1, type2);
+                Analyzer.generateMod(type1type, type2type);
             }else if(mulOp.equals("MP_FLOAT_DIVIDE")){
-                Analyzer.generateDivideF(type1, type2);
+                Analyzer.generateDivideF(type1type, type2type);
             }else{
                 syntax_Error(); //This should never happen
             }

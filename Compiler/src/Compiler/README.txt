@@ -6,5 +6,8 @@ Var
     bool : Boolean;
 
 Begin {no semicolon}
-a := Num1 + 3 * (3 + 2);
+Num1 := 3;
+Num4 := 3.2;
+Num3 := Num1 * Num4;
+Writeln(Num3);
 End.
