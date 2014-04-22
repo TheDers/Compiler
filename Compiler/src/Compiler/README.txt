@@ -1,13 +1,12 @@
 Program Lesson1_Program3;
 Var    
     Num1, Num2, Sum, a: Integer;
-    Num3, Num4 : Float;
+    Num3, Num4, Num5 : Float;
     Taco : String;
-    bool : Boolean;
+    bool, bool2 : Boolean;
 
 Begin {no semicolon}
-Num1 := 3;
-Num4 := 3.2;
-Num3 := Num1 * Num4;
-Writeln(Num3);
+Writeln('Enter Your Age');
+Read(Num1);
+Writeln('You Are %d Years Old' , Num1);
 End.

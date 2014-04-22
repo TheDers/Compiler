@@ -426,7 +426,7 @@ public class Parser {
                 syntax_Error();
                 
             }
-            
+            Analyzer.generateWriteS();
             write_Parameter();
             write_Parameter_Tail();
             if(Globals.token.equals("MP_RPAREN")){
@@ -441,6 +441,7 @@ public class Parser {
             }else{
                 syntax_Error();
             }
+            Analyzer.generateWriteLnS();
             write_Parameter();
             write_Parameter_Tail();
             if(Globals.token.equals("MP_RPAREN")){
@@ -466,9 +467,7 @@ public class Parser {
     }
     public void write_Parameter()
     {
-        //System.out.println(Globals.lexeme);
         ordinal_Expression();
-        Analyzer.generateWriteS();
     }
     public void assignment_Statement()
     {
@@ -850,8 +849,10 @@ public class Parser {
             Analyzer.generatePushS(Globals.lexeme);
             match(Globals.token, "MP_STRING_LIT");
         }else if(Globals.token.equals("MP_TRUE")){          //Rule 102
+            Analyzer.generateTrue();
             match(Globals.token, "MP_TRUE");
         }else if(Globals.token.equals("MP_FALSE")){         //Rule 103
+            Analyzer.generateFalse();
             match(Globals.token, "MP_FALSE");  
         }else if(Globals.token.equals("MP_NOT")){           //Rule 104
             match(Globals.token, "MP_NOT");
