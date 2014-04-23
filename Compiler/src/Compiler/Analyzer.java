@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class Analyzer{
     
-    private static String path = "C:\\Users\\Anders\\Desktop\\uMachine_code.txt";
+    private static String path = "uMachine_code1.il";
     private static boolean append = false;
     static boolean firstRun = true;
     
@@ -79,6 +79,14 @@ public class Analyzer{
     static void generateWriteLnS(){
         try{
             write("WRTLNS");
+        }catch(IOException e){
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
+    }
+    
+    static void generateNegate(){
+        try{
+            write("NEGS");
         }catch(IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
         }
@@ -597,7 +605,7 @@ public class Analyzer{
     }
     
     static void generateMod(String type1, String type2){
-        if(type1.equals("MP_INTEGER") && type2.equals("MP_INTEGER")){
+        if((type1.equals("MP_INTEGER") && type2.equals("MP_INTEGER")) || (type1.equals("MP_INTEGER_LIT") && type2.equals("MP_INTEGER_LIT"))){
             //System.out.println("MODS");
             try{
                 write("MODS");

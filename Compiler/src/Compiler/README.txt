@@ -1,12 +1,29 @@
-Program Lesson1_Program3;
-Var    
-    Num1, Num2, Sum, a: Integer;
-    Num3, Num4, Num5 : Float;
-    Taco : String;
-    bool, bool2 : Boolean;
+program mathTest;
+var a, b, c, d, e, f: integer;
+begin
 
-Begin {no semicolon}
-Writeln('Enter Your Age');
-Read(Num1);
-Writeln('You Are %d Years Old' , Num1);
-End.
+b := 2;
+c := 5;
+
+a :=  b + c;
+d := c - b;
+e := b*a;
+f := c*d;
+
+write(e);
+write(f);
+
+write(a);
+a := e mod f;
+write( a );
+
+write (b);
+b := a div b;
+write (b);
+
+write(c);
+c := f div c * b;
+write(c);
+
+
+end.
