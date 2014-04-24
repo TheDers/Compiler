@@ -21,6 +21,7 @@ public class Parser {
     public int offset = 0;
     public int nestingLevel;
     public String type1, type2, type1temp, type2temp, type1type, type2type;
+    public boolean negateTerm = false;
     
     public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList) {
         tList= tokenList;
@@ -426,9 +427,8 @@ public class Parser {
                 syntax_Error();
                 
             }
-            Analyzer.generateWriteS();
-            write_Parameter();
-            write_Parameter_Tail();
+            write_Parameter("Write");
+            write_Parameter_Tail("Write");
             if(Globals.token.equals("MP_RPAREN")){
                 match(Globals.token, "MP_RPAREN");
             }else{
@@ -441,9 +441,8 @@ public class Parser {
             }else{
                 syntax_Error();
             }
-            Analyzer.generateWriteLnS();
-            write_Parameter();
-            write_Parameter_Tail();
+            write_Parameter("WriteLine");
+            write_Parameter_Tail("writeLine");
             if(Globals.token.equals("MP_RPAREN")){
                 match(Globals.token, "MP_RPAREN");
             }else{
@@ -452,12 +451,12 @@ public class Parser {
             }
         }
     }
-    public void write_Parameter_Tail()
+    public void write_Parameter_Tail(String record)
     {
         if(Globals.token.equals("MP_COMMA")){           //Rule 51
             match(Globals.token, "MP_COMMA");
-            write_Parameter();
-            write_Parameter_Tail();
+            write_Parameter(record);
+            write_Parameter_Tail(record);
         }else if(Globals.token.equals("MP_RPAREN")){    //Rule 52
             //epsilon
         }else{
@@ -465,9 +464,14 @@ public class Parser {
             
         }
     }
-    public void write_Parameter()
+    public void write_Parameter(String record)
     {
         ordinal_Expression();
+        if(record.equals("Write")){
+            Analyzer.generateWriteS();
+        }else{
+            Analyzer.generateWriteLnS();
+        }
     }
     public void assignment_Statement()
     {
@@ -710,6 +714,9 @@ public class Parser {
     }
     public void simple_Expression()
     {
+        if(Globals.token.equals("MP_MINUS")){
+            negateTerm = true;
+        }
         optional_Sign();                //Rule 82
         type1 = Globals.token;
         if(type1.equals("MP_IDENTIFIER")){
@@ -718,8 +725,16 @@ public class Parser {
         }else{
             type1type = Globals.token;
         }
+        //System.out.println(Globals.token);
         term();
+        if(Globals.token.equals("MP_RPAREN")){
+            if(negateTerm == true){
+                Analyzer.generateNegate();
+                negateTerm = false;
+            }
+        }
         term_Tail();
+        
     }
     public void term_Tail()
     {
@@ -757,10 +772,10 @@ public class Parser {
     {
         if(Globals.token.equals("MP_PLUS")){            //Rule 85
             match(Globals.token, "MP_PLUS");
-            
+            //nothing happens..i think
         }else if(Globals.token.equals("MP_MINUS")){     //Rule 86
             match(Globals.token, "MP_MINUS");
-        }else if(Globals.token.equals("MP_FALSE") || Globals.token.equals("MP_NOT") || Globals.token.equals("MP_TRUE") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_INTEGER_LIT") || Globals.token.equals("MP_FLOAT_LIT") || Globals.token.equals("MP_STRING_LIT") || Globals.token.equals("MP_RPAREN")){
+        }else if(Globals.token.equals("MP_FALSE") || Globals.token.equals("MP_NOT") || Globals.token.equals("MP_TRUE") || Globals.token.equals("MP_IDENTIFIER") || Globals.token.equals("MP_INTEGER_LIT") || Globals.token.equals("MP_FLOAT_LIT") || Globals.token.equals("MP_STRING_LIT") || Globals.token.equals("MP_RPAREN") || Globals.token.equals("MP_LPAREN")){
             //Rules 87
             //epsilon
         }else{
