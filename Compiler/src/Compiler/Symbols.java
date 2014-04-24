@@ -300,6 +300,12 @@ public class Symbols {
         String text = "";
         while (next_token != '}')
             {
+                System.out.println(next_token);
+                if (next_token == '\n' || next_token == '\r')
+                {
+                row++;
+                column = 0;
+                }
                 text = text+next_token;
                 column++;
                 next_token = (char)buffer.read();

@@ -319,10 +319,16 @@ public class mp
                     int tokenRowNum = symbol.getRow();
                     int tokenColNum = symbol.getColumn();
                     int difference = tokenColNum-colNum;
+                    int differenceRow = tokenRowNum-rowNum;
                     for(int i = 0;i<difference-1;i++){
                         buffer.read();
                     }
+                    for (int j = 0; j < differenceRow-1;j++)
+                    {
+                        buffer.readLine();
+                    }
                     colNum = tokenColNum;
+                    rowNum = tokenRowNum;
                     String lexeme = symbol.getLexeme();
                     if (!token.equals("MP_COMMENT"))
                     {

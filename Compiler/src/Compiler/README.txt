@@ -1,4 +1,7 @@
 Program Lesson1_Program3;
+{T55slkjdsf
+sldkfjsldkfjdslk
+}
 Var    
     Num1, Num2, Sum, a: Integer;
     Num3, Num4, Num5 : Float;
