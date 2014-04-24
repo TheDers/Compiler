@@ -11,11 +11,7 @@ import java.io.*;
  */
 public class Analyzer{
     
-<<<<<<< HEAD
     private static String path = "C:\\Users\\Calvin\\Desktop\\test.txt";
-=======
-    private static String path = "uMachine_code1.il";
->>>>>>> 87f6103d30461cc807d758a44e58459e21d9a1d9
     private static boolean append = false;
     static boolean firstRun = true;
     

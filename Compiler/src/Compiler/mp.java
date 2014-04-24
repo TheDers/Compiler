@@ -52,6 +52,7 @@ public class mp
             {   
                 //this should now be updated to work with new values
                 char character = (char) c;
+                System.out.println(character);
                 switch(character) 
                    {
                        case '\n':
@@ -59,6 +60,7 @@ public class mp
                            colNum = 0;
                            break;
                        case '\r':
+                           colNum = 0;
                            break;
                        case ' ':
                            colNum++;
@@ -89,7 +91,7 @@ public class mp
                            isSymbol = true;
                            break;
                        case '}':
-                           isSymbol = true;
+                           //isSymbol = true;
                            break;
                        case ';':
                            isSymbol = true;
@@ -318,24 +320,33 @@ public class mp
                     String token = symbol.getToken();
                     int tokenRowNum = symbol.getRow();
                     int tokenColNum = symbol.getColumn();
+                    String lexeme = symbol.getLexeme();
                     int difference = tokenColNum-colNum;
-                    int differenceRow = tokenRowNum-rowNum;
-                    for(int i = 0;i<difference-1;i++){
-                        buffer.read();
-                    }
-                    for (int j = 0; j < differenceRow-1;j++)
+                    int difference2 = tokenRowNum-rowNum;
+                    for(int j = 0;j<difference2;j++)
                     {
                         buffer.readLine();
                     }
                     colNum = tokenColNum;
                     rowNum = tokenRowNum;
-                    String lexeme = symbol.getLexeme();
+                    for(int i = 0;i<difference-1;i++){
+                        buffer.read();
+                    }
+                    if (token.equals("ERROR"))
+                    {
+                        System.out.println("somethings broken");
+                        System.out.println(token);
+                        System.out.println(tokenRowNum);
+                        System.out.println(tokenColNum);
+                        System.out.println(lexeme);
+                    }
+                    
                     if (!token.equals("MP_COMMENT"))
                     {
                         tokenList.add(token);
                         lexemeList.add(lexeme);
+                        printSymbol(token, tokenRowNum, colPrint, lexeme);
                     }
-                    printSymbol(token, tokenRowNum, colPrint, lexeme);
 
 
                 }
@@ -363,9 +374,6 @@ public class mp
                     int tokenRowNum = rWord.getRow();
                     int tokenColNum = rWord.getColumn();
                     int difference = tokenColNum-colNum;
-
-                    //System.out.println(tokenColNum);
-                    //System.out.println(colNum);
 
                     for(int i = 0;i<difference-1;i++){
                         buffer.read();

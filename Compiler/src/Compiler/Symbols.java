@@ -108,7 +108,10 @@ public class Symbols {
             }
         }else if(token == '/'){
             return Divide();
+        }else if(token == '}'){
+            return closeComment();
         }else{
+            System.out.println("AND THE ERROR IS:"+token);
             return "ERROR";
         }
     }
@@ -286,39 +289,53 @@ public class Symbols {
             return "ERROR";
         }
     }
-        public String Comment()throws IOException {
-        //Also includes Gequal
-        BufferedReader buffer = new BufferedReader(new FileReader(file));
-        
-                for(int i = 0;i<row;i++){
+        public String Comment()throws IOException 
+        {
+            BufferedReader buffer = new BufferedReader(new FileReader(file));
+            column++;
+            for(int i = 0;i<row;i++)
+                {
                     buffer.readLine();
                 }
-                for(int j = 0;j<=column;j++){
+            for(int j = 0;j<column;j++)
+                {
                     next_token = (char)buffer.read();
                 }
-        next_token = (char)buffer.read();
-        String text = "";
-        while (next_token != '}')
-            {
-                System.out.println(next_token);
-                if (next_token == '\n' || next_token == '\r')
+            next_token = (char)buffer.read();
+            String text = "";
+            
+            while (next_token != '}')
                 {
-                row++;
-                column = 0;
+                    if (next_token == '\r')
+                    {
+                        column = -1;
+                        row++;
+                    }else
+                    {
+                        text = text+next_token;
+                        column++;
+                    }
+                    next_token = (char)buffer.read();
                 }
-                text = text+next_token;
+
+            if(next_token == '}')
+            {
                 column++;
                 next_token = (char)buffer.read();
+                lexeme = text;
+                return "MP_COMMENT";
             }
-        if(next_token == '}'){
-            column++;
-            column++;
-            lexeme = text;
-            return "MP_COMMENT";
-        }else
-        {
-            return "ERROR";
+            else
+            {
+                return "ERROR";
         }
+    }
+
+    private String closeComment() 
+    {
+        column++;
+        lexeme = "}";
+        return "MP_COMMENT";
     }
 }
 
