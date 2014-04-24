@@ -52,7 +52,6 @@ public class mp
             {   
                 //this should now be updated to work with new values
                 char character = (char) c;
-                System.out.println(character);
                 switch(character) 
                    {
                        case '\n':

@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class Analyzer{
     
-    private static String path = "C:\\Users\\Calvin\\Desktop\\test.txt";
+    private static String path = "C:\\Users\\Anders\\Desktop\\uMachine_code3.il";
     private static boolean append = false;
     static boolean firstRun = true;
     
